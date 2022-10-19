@@ -3,7 +3,7 @@ using EntityLayer.Concrete;
 using EntityLayer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MovieProject.Models.ViewModels;
+using EntityLayer.ViewModels;
 
 namespace MovieProject.Controllers
 {

@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject", "MovieProject.csproj", "{E5C3A28F-8150-488B-8BA2-25883732A9C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityLayer", "..\EntityLayer\EntityLayer.csproj", "{91004AE8-8140-44AE-9E13-8EDB8CD4090A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityLayer", "..\MovieProject\EntityLayer\EntityLayer.csproj", "{91004AE8-8140-44AE-9E13-8EDB8CD4090A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\DataAccessLayer\DataAccessLayer.csproj", "{7CD7C021-674A-4744-8B8E-4D5655468152}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "..\MovieProject\DataAccessLayer\DataAccessLayer.csproj", "{7CD7C021-674A-4744-8B8E-4D5655468152}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{1B3C3994-263C-4ECD-A91F-1C9CF694A9E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "..\MovieProject\BusinessLayer\BusinessLayer.csproj", "{1B3C3994-263C-4ECD-A91F-1C9CF694A9E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
