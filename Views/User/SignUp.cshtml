@@ -1,0 +1,59 @@
+﻿@using MovieProject.Models.ViewModels
+@model UserVM
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <script src="~/jquery/jquery.min.js"></script>
+	<script src="~/jquery-validate/jquery.validate.min.js"></script>
+	<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <title>SignUp</title>
+</head>
+<body>
+    <h3>SignUp</h3>
+
+    <hr />
+    <form asp-action="SignUp">
+        <table>
+            <tr>
+                <td colspan="3"><div asp-validation-summary="ModelOnly"></div></td>
+            </tr>
+            <tr>
+                <td><label asp-for="UserName" required autocomplete="off"></label></td>
+                <td><input asp-for="UserName" required autocomplete="off" /></td>
+                <td><span asp-validation-for="UserName" ></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Email" required autocomplete="off"></label></td>
+                <td><input asp-for="Email" required autocomplete="off" /></td>
+                <td><span asp-validation-for="Email"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="Password" required autocomplete="off"></label></td>
+                <td><input asp-for="Password" required autocomplete="off" /></td>
+                <td><span asp-validation-for="Password"></span></td>
+            </tr>
+            <tr>
+                <td><label asp-for="PasswordAgain" required autocomplete="off"></label></td>
+                <td><input asp-for="PasswordAgain" required autocomplete="off" /></td>
+                <td><span asp-validation-for="PasswordAgain"></span></td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" value="Sign Up" /></td>
+            </tr>
+        </table>
+    </form>
+
+    @Html.ValidationSummary()
+
+</body>
+</html>
