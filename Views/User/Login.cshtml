@@ -5,45 +5,99 @@
 @addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    Layout = null;
+	Layout = null;
 }
 
-<!DOCTYPE html>
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-    
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="~/Movie/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="~/Movie/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="~/Movie/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="~/Movie/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="~/Movie/css/nouislider.min.css">
+	<link rel="stylesheet" href="~/Movie/css/ionicons.min.css">
+	<link rel="stylesheet" href="~/Movie/css/plyr.css">
+	<link rel="stylesheet" href="~/Movie/css/photoswipe.css">
+	<link rel="stylesheet" href="~/Movie/css/default-skin.css">
+	<link rel="stylesheet" href="~/Movie/css/main.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="~/Movie/image/png" href="icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="icon/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Dmitry Volkov">
+	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+
 </head>
-<body>
-    <h4>Login</h4>
-    <hr />
-    <form asp-action="Login">
-        <table>
-            
-            <tr>
-                <td><label asp-for="Email"></label></td>
-                <td><input asp-for="Email" /></td>
-                <td><span asp-validation-for="Email"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Password"></label></td>
-                <td><input asp-for="Password" /></td>
-                <td><span asp-validation-for="Password"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Persistent"></label></td>
-                <td><input asp-for="Persistent" /></td>
-                <td><span asp-validation-for="Persistent"></span></td>
-            </tr>
-            <tr>
-                <td colspan="3"><input type="submit" value="Login" /></td>
-            </tr>
-            <tr>
-                <td colspan="3"><div asp-validation-summary="All"></div></td>
-            </tr>
-        </table>
-    </form>
+<body class="body">
+
+	<div class="sign section--bg" data-bg="img/section/section.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="sign__content">
+						<!-- authorization form -->
+						<form asp-action="Login"  class="sign__form">
+							<a href="index.html" class="sign__logo">
+								<img src="~/Movie/img/logo.svg" alt="">
+							</a>
+
+							<div class="sign__group">
+								<input type="text" class="sign__input" asp-for="Email" placeholder="Email">
+							</div>
+
+							<div class="sign__group">
+								<input type="password" class="sign__input" asp-for="Password" placeholder="Password">
+							</div>
+
+							<div class="sign__group sign__group--checkbox">
+								<input type="checkbox" asp-for="Persistent" checked="checked">
+								<label for="remember">Remember Me</label>
+							</div>
+
+							<button class="sign__btn">Sign in</button>
+
+							<span class="sign__text">Don't have an account? <a href="User/SignUp">Sign up!</a></span>
+
+							<span class="sign__text"><a href="#">Forgot password?</a></span>
+
+						</form>
+						<!-- end authorization form -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS -->
+	<script src="~/Movie/js/jquery-3.3.1.min.js"></script>
+	<script src="~/Movie/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Movie/js/owl.carousel.min.js"></script>
+	<script src="~/Movie/js/jquery.mousewheel.min.js"></script>
+	<script src="~/Movie/js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="~/Movie/js/wNumb.js"></script>
+	<script src="~/Movie/js/nouislider.min.js"></script>
+	<script src="~/Movie/js/plyr.min.js"></script>
+	<script src="~/Movie/js/jquery.morelines.min.js"></script>
+	<script src="~/Movie/js/photoswipe.min.js"></script>
+	<script src="~/Movie/js/photoswipe-ui-default.min.js"></script>
+	<script src="~/Movie/js/main.js"></script>
 </body>
+
 </html>

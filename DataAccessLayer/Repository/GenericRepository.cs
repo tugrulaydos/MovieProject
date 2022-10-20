@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Abstract;
+using DataAccessLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,30 +11,37 @@ namespace DataAccessLayer.Repository
 {
     public class GenericRepository<T> : IGenericDal<T> where T : class
     {
-        //Context c = new Context();
+        //MovieDBContext C = new MovieDBContext();
+
         public void Delete(T t)
         {
-            throw new NotImplementedException();
+            //C.Remove(t);
+            //C.SaveChanges();
         }
 
-        public T GetByID(Expression<Func<T, bool>> filter)
+        public T GetByID(Expression<Func<T, bool>> filter)  //Tek Bir Entity Döndürür.
         {
-            throw new NotImplementedException();
+            //return C.Set<T>().SingleOrDefault(filter);
+            return null;
         }
 
-        public List<T> GetList()
+        public List<T> GetList()  //Tüm Entity'leri Listeler.
         {
-            throw new NotImplementedException();
+            //return C.Set<T>().ToList();
+            return null;
         }
 
-        public void insert(T t)
+        public void insert(T t)  //Veri Ekleme.
         {
-            throw new NotImplementedException();
+            //C.Add(t);
+            //C.SaveChanges();
         }
 
-        public void Update(T t)
+        public void Update(T t) //Veri Güncelleme
         {
-            throw new NotImplementedException();
+            //C.Update(t);
+            //C.SaveChanges();
+
         }
     }
 }

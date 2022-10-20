@@ -54,7 +54,7 @@ namespace MovieProject.Controllers
                         await _userManager.ResetAccessFailedCountAsync(_user);
 
                         if (string.IsNullOrEmpty(TempData["returnUrl"] != null ? TempData["returnUrl"].ToString() : ""))
-                            return RedirectToAction("Index");
+                            return RedirectToAction("Index","Home");
                         return Redirect(TempData["returnUrl"].ToString());
                     }
                     else

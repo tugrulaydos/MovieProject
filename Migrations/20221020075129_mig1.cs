@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DataAccessLayer.Migrations
+namespace MovieProject.Migrations
 {
     public partial class mig1 : Migration
     {
@@ -89,20 +89,6 @@ namespace DataAccessLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Directors", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Scenarios",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Scenarios", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -219,10 +205,10 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(75)", maxLength: 75, nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
-                    ScenarioID = table.Column<int>(type: "int", nullable: true),
+                    Scenerio = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Producer = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IMDBRaiting = table.Column<double>(type: "float", nullable: false),
-                    Story = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Raiting = table.Column<double>(type: "float", nullable: false)
+                    Story = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -488,9 +474,6 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "FilmDirectors");
-
-            migrationBuilder.DropTable(
-                name: "Scenarios");
 
             migrationBuilder.DropTable(
                 name: "Watcheds");

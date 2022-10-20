@@ -15,8 +15,7 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string FullName { get; set; }
 
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
-        public DateTime BirthDate { get; set; }
+        public short? BirthData { get; set; }
      
 
     }

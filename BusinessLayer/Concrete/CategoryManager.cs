@@ -11,33 +11,27 @@ namespace BusinessLayer.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        ICategoryDal _CategoryDal;
-        public CategoryManager(ICategoryDal categoryDal)
-        {
-            _CategoryDal = categoryDal;
-
-        }
-        public Artist GetByID(int ID)
+        public Category GetByID(int ID)
         {
             throw new NotImplementedException();
         }
 
-        public void TAdd(Artist t)
+        public void TAdd(Category t)
         {
             throw new NotImplementedException();
         }
 
-        public void TDelete(Artist t)
+        public void TDelete(Category t)
         {
             throw new NotImplementedException();
         }
 
-        public List<Artist> TGetList()
+        public List<Category> TGetList()
         {
             throw new NotImplementedException();
         }
 
-        public void TUpdate(Artist t)
+        public void TUpdate(Category t)
         {
             throw new NotImplementedException();
         }

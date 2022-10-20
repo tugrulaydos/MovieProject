@@ -15,12 +15,13 @@ namespace EntityLayer.Concrete
 
         [StringLength(75)]
         public string Name { get; set; }
-        public int CategoryID { get; set; }
-        public int? ScenarioID { get; set; }
+       
+        public string ?Scenerio { get; set; }
+        public string ?Producer { get; set; }
+        public string ?Director { get; set; }
         public double IMDBRaiting { get; set; }
-        public string Story { get; set; }
-        public double Raiting { get; set; }
-        public Category CategoryFK { get; set; }
+        public string Story { get; set; }        
+       
         public ICollection<Comment> _Comment { get; set; }
 
     }
