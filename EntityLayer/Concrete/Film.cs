@@ -12,19 +12,20 @@ namespace EntityLayer.Concrete
     public class Film
     {
         [Key]
-        public int ID { get; set; }
+        public int FilmID { get; set; }
 
         [StringLength(75)]
-        public string Name { get; set; }        
-
+        public string Name { get; set; }
         public string ?Scenerio { get; set; }
         public string ?Producer { get; set; }
         public string ?Director { get; set; }
         public double IMDBRaiting { get; set; }
-        public string Story { get; set; }     
-        
+        public string Story { get; set; }        
         public string? İmageUrl { get; set; }       
         public ICollection<Comment> _Comment { get; set; }
+        public ICollection<Category> Categories { get; set; }
+
+
       
 
     }

@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace EntityLayer.Concrete
 {
     public class FilmArtist
-    {
-        [Key]
-        public int ID { get; set; }
+    {              
 
         public int ArtistID{ get; set; }
 

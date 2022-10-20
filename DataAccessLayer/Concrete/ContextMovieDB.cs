@@ -17,23 +17,21 @@ namespace DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("Server=DESKTOP-D80M3PV; database=MovieDB1; integrated security=true;");
 
         }
-       
 
-        public DbSet<Comment> Comments { get; set; }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<FilmCategory>()
+        //        .HasKey(fc => new {fc.})
+        //}
 
-        //public DbSet<Director> Directors { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }       
 
         public DbSet<Artist> Artists { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<Film> Films { get; set; }
-
-        public DbSet<FilmArtist> FilmArtists { get; set; }
-
-        public DbSet<FilmCategory> FilmCategories { get; set; }
-
-        //public DbSet<FilmDirector> FilmDirectors { get; set; }
+        public DbSet<Film> Films { get; set; }       
 
         public DbSet<Watched> Watcheds { get; set; }
 

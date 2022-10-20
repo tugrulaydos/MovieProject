@@ -10,7 +10,7 @@ namespace EntityLayer.Concrete
     public class Watched
     {
         [Key]
-        public int ID { get; set; }
+        public int WatchedID { get; set; }
 
         public int UserID { get; set; }
 

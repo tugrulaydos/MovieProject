@@ -10,7 +10,7 @@ namespace EntityLayer.Concrete
     public class Artist
     {
         [Key]
-        public int ID { get; set; }
+        public int ArtistID { get; set; }
 
         [StringLength(50)]
         public string FullName { get; set; }

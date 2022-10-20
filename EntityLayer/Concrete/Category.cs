@@ -10,10 +10,12 @@ namespace EntityLayer.Concrete
     public class Category
     {
         [Key]
-        public int ID { get; set; }
+        public int CategoryID { get; set; }
 
         [StringLength(50)]
         public string CategoryName { get; set; }
+
+        public ICollection<Film> Films { get; set; }
 
        
 
