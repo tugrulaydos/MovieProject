@@ -15,6 +15,8 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string CategoryName { get; set; }
 
+       
+
       
 
     }

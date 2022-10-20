@@ -23,9 +23,9 @@ namespace EntityLayer.Concrete
         public double IMDBRaiting { get; set; }
         public string Story { get; set; }     
         
-        public string? İmageUrl { get; set; }
-       
+        public string? İmageUrl { get; set; }       
         public ICollection<Comment> _Comment { get; set; }
+      
 
     }
 }
