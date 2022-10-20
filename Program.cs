@@ -21,7 +21,7 @@ builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterVa
 
 //builder.Services.AddIdentity<User, UserRole>().AddEntityFrameworkStores<MovieDBContext>();
 
-builder.Services.AddDbContext<ContextMovieDB>(x => x.UseSqlServer("ConnectionStrings:SqlServerConnectionString"));
+builder.Services.AddDbContext<ContextMovieDB>();
 
 builder.Services.AddIdentity<User, UserRole>(x =>
 {

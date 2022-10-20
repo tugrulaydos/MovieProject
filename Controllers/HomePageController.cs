@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFrameWork;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MovieProject.Controllers
 {

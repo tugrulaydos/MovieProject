@@ -6,13 +6,13 @@ namespace MovieProject.ViewComponents
 {
 	public class LastFilmsViewComponent:ViewComponent
 	{
-		FilmManager filmManager = new FilmManager(new EFFilmDal());
+        FilmManager _filmManager = new FilmManager(new EFFilmDal());
 
-		public IViewComponentResult Invoke()
+        public IViewComponentResult Invoke()
 		{
-			var values = filmManager.TGetList();
+			var values = _filmManager.TGetList();
 
-			return View();
+			return View(values);
 
 		}
 
