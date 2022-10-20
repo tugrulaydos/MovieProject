@@ -15,7 +15,9 @@ namespace DataAccessLayer.Concrete
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-D80M3PV; database=MovieDB1; integrated security=true;");
+
         }
+       
 
         public DbSet<Comment> Comments { get; set; }
 
