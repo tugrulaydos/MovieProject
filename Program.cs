@@ -6,6 +6,7 @@ using BusinessLayer.ValidationRules;
 using MovieProject.Models;
 using System;
 using FluentValidation.AspNetCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,13 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
+
 builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<Program>());
 
 
-builder.Services.AddDbContext<MovieDBContext>(x => x.UseSqlServer("ConnectionStrings:SqlServerConnectionString"));
+
 //builder.Services.AddIdentity<User, UserRole>().AddEntityFrameworkStores<MovieDBContext>();
 
-
+builder.Services.AddDbContext<ContextMovieDB>(x => x.UseSqlServer("ConnectionStrings:SqlServerConnectionString"));
 
 builder.Services.AddIdentity<User, UserRole>(x =>
 {
@@ -33,7 +35,9 @@ builder.Services.AddIdentity<User, UserRole>(x =>
     x.User.AllowedUserNameCharacters = "abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789-._@+";
 
 }).AddPasswordValidator<CustomPasswordValidation>()          
-          .AddErrorDescriber<CustomUserValidation>().AddEntityFrameworkStores<MovieDBContext>();
+          .AddErrorDescriber<CustomUserValidation>().AddEntityFrameworkStores<ContextMovieDB>();
+
+
 
 builder.Services.ConfigureApplicationCookie(x =>
 {
@@ -80,6 +84,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=User}/{action=SignUp}/{id?}");
+    pattern: "{controller=HomePage}/{action=Index}/{id?}");
 
 app.Run();

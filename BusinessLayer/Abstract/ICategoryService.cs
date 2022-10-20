@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICategoryService:IGenericService<Artist>
+    public interface ICategoryService:IGenericService<Category>
     {
 
 

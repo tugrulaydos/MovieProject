@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DataAccessLayer.Migrations
+namespace MovieProject.Migrations
 {
-    [DbContext(typeof(MovieDBContext))]
-    partial class MovieDBContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ContextMovieDB))]
+    partial class ContextMovieDBModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,8 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("datetime2");
+                    b.Property<short?>("BirthData")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("FullName")
                         .IsRequired()
@@ -91,27 +91,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Director", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Directors");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Film", b =>
                 {
                     b.Property<int>("ID")
@@ -120,8 +99,8 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
+                    b.Property<string>("Director")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("IMDBRaiting")
                         .HasColumnType("float");
@@ -131,19 +110,17 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(75)
                         .HasColumnType("nvarchar(75)");
 
-                    b.Property<double>("Raiting")
-                        .HasColumnType("float");
+                    b.Property<string>("Producer")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ScenarioID")
-                        .HasColumnType("int");
+                    b.Property<string>("Scenerio")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Story")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
 
                     b.ToTable("Films");
                 });
@@ -171,7 +148,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("FilmArtists");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.FilmDirector", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.FilmCategory", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -179,7 +156,7 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<int>("DirectorID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<int>("FilmID")
@@ -187,32 +164,11 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DirectorID");
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("FilmID");
 
-                    b.ToTable("FilmDirectors");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Scenario", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Scenarios");
+                    b.ToTable("FilmCategories");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.User", b =>
@@ -484,17 +440,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("UserFK");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Film", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Category", "CategoryFK")
-                        .WithMany("films")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CategoryFK");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.FilmArtist", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Artist", "ArtistFK")
@@ -514,11 +459,11 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("FilmFK");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.FilmDirector", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.FilmCategory", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Director", "DirectorFK")
+                    b.HasOne("EntityLayer.Concrete.Category", "CategoryFK")
                         .WithMany()
-                        .HasForeignKey("DirectorID")
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -528,7 +473,7 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("DirectorFK");
+                    b.Navigation("CategoryFK");
 
                     b.Navigation("FilmFK");
                 });
@@ -620,11 +565,6 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
-                {
-                    b.Navigation("films");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Film", b =>

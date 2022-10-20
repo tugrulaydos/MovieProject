@@ -15,7 +15,7 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string CategoryName { get; set; }
 
-        public ICollection<Film> films { get; set; }
+      
 
     }
 }

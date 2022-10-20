@@ -3,57 +3,125 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    Layout = null;
+	Layout = null;
 }
 
+
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <script src="~/jquery/jquery.min.js"></script>
+	<script src="~/jquery/jquery.min.js"></script>
 	<script src="~/jquery-validate/jquery.validate.min.js"></script>
 	<script src="~/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-    <title>SignUp</title>
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7CUbuntu:300,400,500,700" rel="stylesheet">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="~/Movie/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" href="~/Movie/css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="~/Movie/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="~/Movie/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="~/Movie/css/nouislider.min.css">
+	<link rel="stylesheet" href="~/Movie/css/ionicons.min.css">
+	<link rel="stylesheet" href="~/Movie/css/plyr.css">
+	<link rel="stylesheet" href="~/Movie/css/photoswipe.css">
+	<link rel="stylesheet" href="~/Movie/css/default-skin.css">
+	<link rel="stylesheet" href="~/Movie/css/main.css">
+
+	<!-- Favicons -->
+	<link rel="icon" type="~/Movie/image/png" href="icon/favicon-32x32.png" sizes="32x32">
+	<link rel="apple-touch-icon" href="icon/favicon-32x32.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="icon/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="icon/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="icon/apple-touch-icon-144x144.png">
+
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="Dmitry Volkov">
+	<title>FlixGo – Online Movies, TV Shows & Cinema HTML Template</title>
+
 </head>
-<body>
-    <h3>SignUp</h3>
+<body class="body">
 
-    <hr />
-    <form asp-action="SignUp">
-        <table>
-            <tr>
-                <td colspan="3"><div asp-validation-summary="ModelOnly"></div></td>
-            </tr>
-            <tr>
-                <td><label asp-for="UserName" required autocomplete="off"></label></td>
-                <td><input asp-for="UserName" required autocomplete="off" /></td>
-                <td><span asp-validation-for="UserName" ></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Email" required autocomplete="off"></label></td>
-                <td><input asp-for="Email" required autocomplete="off" /></td>
-                <td><span asp-validation-for="Email"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="Password" required autocomplete="off"></label></td>
-                <td><input asp-for="Password" required autocomplete="off" /></td>
-                <td><span asp-validation-for="Password"></span></td>
-            </tr>
-            <tr>
-                <td><label asp-for="PasswordAgain" required autocomplete="off"></label></td>
-                <td><input asp-for="PasswordAgain" required autocomplete="off" /></td>
-                <td><span asp-validation-for="PasswordAgain"></span></td>
-            </tr>
-            <tr>
-                <td colspan="3"><input type="submit" value="Sign Up" /></td>
-            </tr>
-        </table>
-    </form>
+	<div class="sign section--bg" data-bg="~/Movie/img/section/section.jpg">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="sign__content">
+						<!-- registration form -->
+						<form asp-action="SignUp" class="sign__form">
+							<a href="index.html" class="sign__logo">
+								<img src="~/Movie/img/logo.svg" alt="">
+							</a>
 
-    @Html.ValidationSummary()
+							<div class="sign__group">
 
+								<input type="text" class="sign__input" asp-for="UserName" placeholder="UserName">
+								<span asp-validation-for="UserName"></span>
+
+							</div>
+
+
+							<div class="sign__group">
+								<input type="text" class="sign__input" asp-for="Email" placeholder="Email">
+								<span asp-validation-for="Email"></span>
+
+							</div>
+
+
+							<div class="sign__group">
+								<input type="text" class="sign__input" asp-for="Password" placeholder="Password">
+								<span asp-validation-for="Password"></span>
+								
+							</div>
+
+
+							<div class="sign__group">
+								<input type="text" class="sign__input" asp-for="PasswordAgain" placeholder="PasswordAgain">
+								<span asp-validation-for="PasswordAgain"></span>
+							</div>
+
+
+							<div class="sign__group sign__group--checkbox">
+							<input id="remember"  type="checkbox" checked="checked">
+							<label for="remember">I agree to the <a href="#">Privacy Policy</a></label>
+							</div>
+
+							<div asp-validation-summary="All"; background-color:White;>
+
+							</div>
+
+							<button class="sign__btn">Sign up</button>
+
+							<span class="sign__text">Already have an account? <a href="User/Login">Sign in!</a></span>
+						</form>
+						
+						<!-- registration form -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- JS -->
+	<script src="~/Movie/js/jquery-3.3.1.min.js"></script>
+	<script src="~/Movie/js/bootstrap.bundle.min.js"></script>
+	<script src="~/Movie/js/owl.carousel.min.js"></script>
+	<script src="~/Movie/js/jquery.mousewheel.min.js"></script>
+	<script src="~/Movie/js/jquery.mCustomScrollbar.min.js"></script>
+	<script src="~/Movie/js/wNumb.js"></script>
+	<script src="~/Movie/js/nouislider.min.js"></script>
+	<script src="~/Movie/js/plyr.min.js"></script>
+	<script src="~/Movie/js/jquery.morelines.min.js"></script>
+	<script src="~/Movie/js/photoswipe.min.js"></script>
+	<script src="~/Movie/js/photoswipe-ui-default.min.js"></script>
+	<script src="~/Movie/js/main.js"></script>
 </body>
+
 </html>
+
