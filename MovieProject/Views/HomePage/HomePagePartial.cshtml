@@ -1,0 +1,60 @@
+﻿
+@using EntityLayer.Concrete
+
+@model List<Film>
+
+<div class="tab-content" id="myTabContent">
+	<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+		<div class="row">
+
+			@foreach(var item in Model)
+			{
+			<!-- card -->
+			<div class="col-6 col-sm-12 col-lg-6">
+				<div class="card card--list">
+					<div class="row">
+						<div class="col-12 col-sm-4">
+							<div class="card__cover">
+								<img src="@item.İmageUrl" alt="">
+								<a href="#" class="card__play">
+									<i class="icon ion-ios-play"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="col-12 col-sm-8">
+							<div class="card__content">
+								<h3 class="card__title"><a href="#">@item.Name</a></h3>
+								<span class="card__category">
+									@foreach(var item2 in item.Categories)
+									{
+									   <a href="#">@item2.CategoryName</a>									
+									}
+								</span>
+
+								<div class="card__wrap">
+									<span class="card__rate"><i class="icon ion-ios-star"></i>@item.IMDBRaiting</span>
+
+									<ul class="card__list">
+										<li>HD</li>
+										<li>16+</li>
+									</ul>
+								</div>
+
+								<div class="card__description">
+									<p>@item.Story</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			}
+			<!-- end card -->
+			
+						
+		</div>
+	</div>
+
+
+</div>
