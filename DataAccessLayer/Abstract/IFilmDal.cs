@@ -9,6 +9,7 @@ namespace DataAccessLayer.Abstract
 {
 	public interface IFilmDal:IGenericDal<Film>
 	{
+		public List<Film> GetFilmCategory(); 
 
 	}
 }

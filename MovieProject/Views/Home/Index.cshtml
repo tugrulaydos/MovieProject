@@ -1,4 +1,8 @@
-﻿@{
+﻿@using EntityLayer.Concrete
+@model List<Film>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +10,16 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+@foreach(var item in Model)
+{
+     <p>@item.Name</p>        
+
+     @foreach(var item2 in item.Categories)
+     {
+         <p>@item2.CategoryName</p>
+
+     }
+
+
+}

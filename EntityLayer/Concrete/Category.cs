@@ -10,7 +10,7 @@ namespace EntityLayer.Concrete
     public class Category
     {
         [Key]
-        public int CategoryID { get; set; }
+        public int ID { get; set; }
 
         [StringLength(50)]
         public string CategoryName { get; set; }

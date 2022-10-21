@@ -19,6 +19,11 @@ namespace BusinessLayer.Concrete
 			_filmDal = filmDal;
 		}
 
+		public List<Film> FilmCategory()
+		{
+			return _filmDal.GetFilmCategory();
+		}
+
 		public Film GetByID(int id) //Tekil Veri Getirir.
 		{
 			return _filmDal.GetByID(x => x.ID ==id);

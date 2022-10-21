@@ -8,7 +8,7 @@ namespace EntityLayer.Concrete
 {
     public class WatchList
     {
-        public int WatchListID { get; set; }
+        public int ID { get; set; }
         
         public int UserID { get; set; }
 
