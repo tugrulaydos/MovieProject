@@ -10,7 +10,7 @@ namespace EntityLayer.Concrete
     public class Comment
     {
         [Key]
-        public int CommentID { get; set; }        
+        public int ID { get; set; }        
         public string CommentContent { get; set; }        
         public int UserID { get; set; }
         public int FilmID { get; set; }

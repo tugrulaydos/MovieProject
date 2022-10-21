@@ -12,7 +12,7 @@ namespace EntityLayer.Concrete
     public class Film
     {
         [Key]
-        public int FilmID { get; set; }
+        public int ID { get; set; }
 
         [StringLength(75)]
         public string Name { get; set; }
@@ -24,6 +24,8 @@ namespace EntityLayer.Concrete
         public string? İmageUrl { get; set; }       
         public ICollection<Comment> _Comment { get; set; }
         public ICollection<Category> Categories { get; set; }
+
+        public ICollection<Artist> Artists { get; set; }
 
 
       

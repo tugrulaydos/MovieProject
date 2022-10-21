@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,17 +12,27 @@ namespace DataAccessLayer.Concrete
 {
     public class ContextMovieDB : IdentityDbContext<User, UserRole, int>
     {
-        //public ContextMovieDB(DbContextOptions<ContextMovieDB> dbContext) : base(dbContext) { }
+        
+
+      
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-D80M3PV; database=MovieDB1; integrated security=true;");
+           
+            optionsBuilder.UseSqlServer("Server=DESKTOP-D80M3PV; database=MovieDB; integrated security=true;");
 
         }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{
+        //    base.OnModelCreating(modelBuilder);
+
         //    modelBuilder.Entity<FilmCategory>()
-        //        .HasKey(fc => new {fc.})
+        //        .HasKey(fc => new { fc.CategoryID, fc.FilmID });
+
+        //    modelBuilder.Entity<FilmArtist>()
+        //        .HasKey(fa => new { fa.FilmID, fa.ArtistID });         
+
         //}
 
 
@@ -36,5 +47,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Watched> Watcheds { get; set; }
 
         public DbSet<WatchList> WatchLists { get; set; }
+
+       
     }
 }

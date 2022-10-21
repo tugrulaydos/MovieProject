@@ -9,6 +9,7 @@ namespace BusinessLayer.Abstract
 {
 	public interface IFilmService:IGenericService<Film>
 	{
+		public List<Film> FilmCategory();
 
 	}
 }

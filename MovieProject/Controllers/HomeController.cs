@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieProject.Models;
 using System.Diagnostics;
 
@@ -14,10 +16,15 @@ namespace MovieProject.Controllers
             _logger = logger;
         }
 
-        [Authorize]
-        public IActionResult Index()
+        
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var c = new ContextMovieDB();
+
+            var values = await c.Films.Include(x => x.Categories).ToListAsync();        
+
+           
+            return View(values);
         }
 
         public IActionResult Privacy()

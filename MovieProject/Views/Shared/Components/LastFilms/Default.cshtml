@@ -5,6 +5,7 @@
 
 <section class="home">
 	<!-- home bg -->
+	<p>Burası en üst</p>
 	<div class="owl-carousel home__bg">
 		<div class="item home__cover" data-bg="~/Movie/img/home/home__bg.jpg"></div>
 		<div class="item home__cover" data-bg="~/Movie/img/home/home__bg2.jpg"></div>
@@ -44,8 +45,11 @@
 							<div class="card__content">
 								<h3 class="card__title"><a href="#">@item.Name</a></h3>
 								<span class="card__category">
-									<a href="#">Action</a>
-									<a href="#">Triler</a>
+									@foreach(var item2 in item.Categories)
+									{
+									<a href="#">@item2.CategoryName</a>
+									
+									}
 								</span>
 								<span class="card__rate"><i class="icon ion-ios-star"></i>@item.IMDBRaiting</span>
 							</div>
