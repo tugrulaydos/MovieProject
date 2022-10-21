@@ -7,11 +7,29 @@ namespace MovieProject.Controllers
 {
 	public class HomePageController : Controller
 	{
-		
-		public IActionResult Index()
+
+		FilmManager _filmManger = new FilmManager(new EFFilmDal()); 
+		public IActionResult Index()		
 		{
-		
-            return View();
+            var values = _filmManger.FilmCategory();
+           
+            return View(values);
+            
 		}
+
+		public  PartialViewResult HomePagePartial()
+		{		
+			return PartialView();
+		}
+
+		public PartialViewResult HomePagePartial2()
+		{
+
+			return PartialView();
+		}
+
+
+
+
 	}
 }
