@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,16 @@ namespace DataAccessLayer.EntityFrameWork
 
 			return values;
 
-        }
+        }		
+
+		public Film GetFilmCategoryByID(Expression<Func<Film, bool>> filter)
+		{
+
+			var c = new ContextMovieDB();
+			
+
+			return c.Films.Include(x=>x.Categories).FirstOrDefault(filter);
+
+		}
 	}
 }
