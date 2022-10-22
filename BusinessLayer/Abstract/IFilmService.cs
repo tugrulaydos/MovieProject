@@ -11,5 +11,7 @@ namespace BusinessLayer.Abstract
 	{
 		public List<Film> FilmCategory();
 
+		public Film GetFilCtegoryByID(int id);
+
 	}
 }

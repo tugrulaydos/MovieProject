@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,11 @@ namespace DataAccessLayer.Abstract
 {
 	public interface IFilmDal:IGenericDal<Film>
 	{
-		public List<Film> GetFilmCategory(); 
+		public List<Film> GetFilmCategory();
+
+		public Film GetFilmCategoryByID(Expression<Func<Film, bool>> filter);
+
+
 
 	}
 }
