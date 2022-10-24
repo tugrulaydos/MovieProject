@@ -15,10 +15,10 @@ namespace EntityLayer.Concrete
         public int UserID { get; set; }
         public int FilmID { get; set; }
         public int? ParentID { get; set; }
+        public DateTime CreationTime { get; set; }
+        public Film Film { get; set; }
 
-        public Film FilmFK { get; set; }
-
-        public User UserFK { get; set; }
+        public User User { get; set; }
 
         
 

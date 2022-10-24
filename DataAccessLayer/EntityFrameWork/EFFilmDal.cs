@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +16,27 @@ namespace DataAccessLayer.EntityFrameWork
 {
 	public class EFFilmDal : GenericRepository<Film>, IFilmDal
 	{
-		
+		public List<Film> GetFilmCategoriesByID(int id)
+		{
+			var c = new ContextMovieDB();
+
+			var values1 = c.Films.Include(x => x.Categories).FirstOrDefault(y => y.ID == id); //Seçtiğimiz Film
+
+			List<int> IDCategories = new List<int>(); //Seçilen Filmin Kategori ID'lerini Bu Listeye Atacağız
+
+			foreach (var category in values1.Categories) //Category ID'si bu olan filmleri alacağız.
+			{
+				IDCategories.Add(category.ID);
+			}			
+
+			var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.ID))).ToList();
+
+			values2 = values2.Where(y => y.Categories.Count > 0).ToList();		
+
+
+			return values2;			
+		}
+
 		public List<Film> GetFilmCategory() 
 		{
             var c = new ContextMovieDB();
