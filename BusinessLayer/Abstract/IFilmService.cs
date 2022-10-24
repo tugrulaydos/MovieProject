@@ -13,5 +13,7 @@ namespace BusinessLayer.Abstract
 
 		public Film GetFilCtegoryByID(int id);
 
+		public List<Film> GetFilmCategoriesID(int id);  //Category ID'lerine göre Filmleri Getirecektir.
+
 	}
 }
