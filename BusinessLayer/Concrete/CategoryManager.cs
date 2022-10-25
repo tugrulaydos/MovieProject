@@ -11,6 +11,12 @@ namespace BusinessLayer.Concrete
 {
     public class CategoryManager : ICategoryService
     {
+        readonly ICategoryDal _categoryDal;
+        public CategoryManager(ICategoryDal categoryDal)
+        {
+            this._categoryDal = categoryDal;
+
+        }
         public Category GetByID(int ID)
         {
             throw new NotImplementedException();
@@ -18,7 +24,7 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Category t)
         {
-            throw new NotImplementedException();
+            _categoryDal.insert(t);
         }
 
         public void TDelete(Category t)
@@ -28,7 +34,7 @@ namespace BusinessLayer.Concrete
 
         public List<Category> TGetList()
         {
-            throw new NotImplementedException();
+            return _categoryDal.GetList();
         }
 
         public void TUpdate(Category t)
