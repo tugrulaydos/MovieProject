@@ -9,6 +9,7 @@ namespace DataAccessLayer.Abstract
 {
     public interface IArtistDal:IGenericDal<Artist>
     {
+        public List<Artist> GetArtistByArtistID(int[] ArtistID);
 
     }
 }

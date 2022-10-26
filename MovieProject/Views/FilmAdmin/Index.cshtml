@@ -1,0 +1,54 @@
+﻿@using EntityLayer.Concrete
+@model List<Film>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Films</h1>
+
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>FilmName</th>
+        <th>Genre</th>
+        <th>Go to the Film</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Name</td>
+            <td>                
+               
+                @foreach(var x in item.Categories)
+                {
+                       @x.CategoryName<br />
+                                        
+                }
+                
+            </td>
+            <td><a href="/FilmAdmin/MovieDetail/@item.ID" class="btn btn-info">GO</a></td>
+        </tr>
+
+    }
+
+
+</table>
+
+<a href="/FilmAdmin/AddMovie" class="btn btn-info">New Movie</a>

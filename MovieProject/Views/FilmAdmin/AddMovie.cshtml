@@ -1,0 +1,113 @@
+﻿@using EntityLayer.Concrete
+@model Film
+<!-- JS & CSS library of MultiSelect plugin -->
+@{
+	ViewData["Title"] = "AddMovie";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="row">
+
+	<form asp-controller="FilmAdmin" asp-action="AddMovie">
+
+		<div class="col-3 border>
+
+			<label asp-for="Name">Name:</label>
+			<input type="text" class="form-control" asp-for="Name" placeholder="Enter Name" />
+
+			<label asp-for="Scenerio">Scenerio:</label>
+			<input type="text" class="form-control" asp-for="Scenerio" placeholder="Scenerio" />
+
+			<label asp-for="Producer">Producer:</label>
+			<input type="text" class="form-control" asp-for="Producer" placeholder="Producer" />
+
+			<label asp-for="Director">Director:</label>
+			<input type="text" class="form-control" asp-for="Director" placeholder="Director" />
+
+			<label asp-for="IMDBRaiting">IMDB:</label>
+			<input type="text" contextmenu=" " class="form-control" asp-for="IMDBRaiting" placeholder="IMDB" />
+			<br />
+		</div>
+		<br />
+
+		<div class="col-6 border">
+			<label asp-for="Story">Story:</label>
+			<br />
+			<textarea asp-for="Story" rows="6" cols="45">Story</textarea>
+
+
+			<label asp-for="İmageUrl">ImageURL:</label>
+			<input type="url" class="form-control" asp-for="İmageUrl" placeholder="ImageURL" />
+
+			<label asp-for="Country">Country:</label>
+			<input type="text" class="form-control" asp-for="Country" placeholder="Country" />
+
+			<label asp-for="ReleaseYear">ReleaseYear:</label>
+			<input type="text" class="form-control" asp-for="ReleaseYear" placeholder="ReleaseYear" />
+
+			<label asp-for="RunningTime">RunningTime:</label>
+			<input type="text" class="form-control" asp-for="RunningTime" placeholder="RunningTime" />
+
+			<label asp-for="Age">Age:</label>
+			<input type="text" class="form-control" asp-for="Age" placeholder="Age" />
+		</div>
+		<br />
+
+		<div class="col-3 border">
+			<legend>Choose Movie's Genre:</legend>
+
+			@foreach (var item in ViewBag.Category as List<Category>)
+			{
+				<input type="checkbox" name="GenreID" value=@item.ID>
+
+				@item.CategoryName
+			}
+
+			<br />
+
+			<legend>Choose Movie's Artists</legend>
+			<select name="ArtistOpt[]" multiple id="ArtistOpt">
+				@foreach (var item in ViewBag.Artists as List<Artist>)
+				{
+					<option value=@item.ID>@item.FullName</option>
+				}
+
+			</select>
+			
+
+		</div>
+
+
+		<input type="submit" value="Submit">
+
+
+	</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

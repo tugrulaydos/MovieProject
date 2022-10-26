@@ -16,7 +16,11 @@ namespace DataAccessLayer.Abstract
 
 		public List<Film> GetFilmCategoriesByID(int id);  //Seçilen Film ID'sinin sahip olduğu kategoriye göre ilgili kategoriye sahip olan diğer filmleri getirir.
 
+		public Film GetFilmByFilmID(Expression<Func<Film, bool>> filter);
+
+      
 
 
-	}
+
+    }
 }

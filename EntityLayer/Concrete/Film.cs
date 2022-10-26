@@ -12,6 +12,10 @@ namespace EntityLayer.Concrete
 {
     public class Film
     {
+        public Film()
+        {
+            Categories = new HashSet<Category>();
+        }
         [Key]
         public int ID { get; set; }
 

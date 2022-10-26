@@ -34,10 +34,18 @@ namespace BusinessLayer.Concrete
 			return _filmDal.GetFilmCategoryByID(x => x.ID == id);
 		}
 
+		public Film GetFilmByFilmID(int id)
+		{
+			return _filmDal.GetFilmByFilmID(y=>y.ID==id);
+
+        }
+
 		public List<Film> GetFilmCategoriesID(int id)
 		{
 			return _filmDal.GetFilmCategoriesByID(id);
 		}
+
+		
 
 		public void TAdd(Film t)
 		{
