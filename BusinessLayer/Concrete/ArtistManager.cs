@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
+    
     public class ArtistManager : IArtistService
     {
         IArtistDal _artistDal;
@@ -18,6 +19,12 @@ namespace BusinessLayer.Concrete
             _artistDal = artistDal;
                   
         }
+
+        public List<Artist> GetArtistsByArtistID(int[] ArtistID)
+        {
+            return _artistDal.GetArtistByArtistID(ArtistID);
+        }
+
         public Artist GetByID(int ID)
         {
             throw new NotImplementedException();
@@ -35,7 +42,7 @@ namespace BusinessLayer.Concrete
 
         public List<Artist> TGetList()
         {
-            throw new NotImplementedException();
+            return _artistDal.GetList();
         }
 
         public void TUpdate(Artist t)

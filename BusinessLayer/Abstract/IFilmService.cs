@@ -9,11 +9,19 @@ namespace BusinessLayer.Abstract
 {
 	public interface IFilmService:IGenericService<Film>
 	{
-		public List<Film> FilmCategory();
+		public List<Film> FilmCategory(); //Tüm Filmeleri Getireceğiz Artist ve Category tabloları dahil ediliyor.
 
 		public Film GetFilCtegoryByID(int id);
 
 		public List<Film> GetFilmCategoriesID(int id);  //Category ID'lerine göre Filmleri Getirecektir.
+
+		public Film GetFilmByFilmID(int id); //Film ID'sine Göre İstenilen Filmi Getireceğiz.
+
+		
+
+		
+
+		
 
 	}
 }

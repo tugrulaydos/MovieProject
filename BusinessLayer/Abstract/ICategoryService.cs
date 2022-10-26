@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface ICategoryService:IGenericService<Category>
     {
-
-
+        public List<Category> GetCategoriesByCategoryID(List<int> _categoryID);  //ID'si listenin içerisindeki ID'lerle eşleşen Category'leri listeleyecektir.
+        
     }
 }

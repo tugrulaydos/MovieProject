@@ -9,6 +9,7 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICategoryDal:IGenericDal<Category>
     {
+        public List<Category> GetCategoriesByCategoryID(List<int> _categoryID);
 
     }
 }

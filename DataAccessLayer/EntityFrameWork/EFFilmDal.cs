@@ -41,7 +41,7 @@ namespace DataAccessLayer.EntityFrameWork
 		{
             var c = new ContextMovieDB();
 
-            var values =  c.Films.Include(x => x.Categories).ToList();
+			var values = c.Films.Include(x => x.Categories).Include(x => x.Artists).ToList(); //Category ve Artist'i de getirecektir.
 
 			return values;
 
@@ -56,5 +56,15 @@ namespace DataAccessLayer.EntityFrameWork
 			return c.Films.Include(x=>x.Categories).FirstOrDefault(filter);
 
 		}
+
+		public Film GetFilmByFilmID(Expression<Func<Film,bool>> filter)
+		{
+			var c = new ContextMovieDB();
+
+			return c.Films.Include(y => y.Categories).Include(z=>z.Artists).FirstOrDefault(filter);
+
+		}
+
+		
 	}
 }

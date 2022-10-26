@@ -1,0 +1,98 @@
+﻿@using EntityLayer.Concrete
+@model Film
+
+
+@{
+	ViewData["Title"] = "MovieDetail";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@*<h1>MovieDetail</h1>*@
+
+<form asp-controller="FilmAdmin" asp-action="UpdateMovie">
+	<table class="table">
+
+		<thead>Movie Detail</thead>
+		<tbody>
+			<tr>
+				<td><label asp-for="Name">Name:</label></td>
+				<td><input type="text" asp-for="Name" /></td>
+			</tr>
+
+			<tr>
+				<td><label asp-for="Director">Director:</label></td>
+				<td><input type="text" asp-for="Director" /></td>
+			</tr>
+
+			<tr>
+				<td><label asp-for="Country">Country:</label></td>
+				<td><input type="text" asp-for="Country" /></td>
+			</tr>
+
+			<tr>
+			<td><label asp-for="Scenerio">Scenerio:</label></td>
+			<td><input type="text" asp-for="Scenerio" /></td>
+			</tr>
+
+			<tr>
+			<td><label asp-for="Producer">Producer:</label></td>
+			<td><input type="text" asp-for="Producer" /></td>
+			</tr>
+
+			<tr>
+			<td><label asp-for="Story">Story:</label></td>
+				<td><textarea asp-for="Story" rows="6" cols="60"></textarea></td>
+
+			<tr>
+				<td><label asp-for="ReleaseYear">Release Year:</label></td>
+				<td><input type="text" asp-for="ReleaseYear" /></td>
+			</tr>
+
+			<tr>
+				<td><label asp-for="RunningTime">RunningTime:</label></td>
+				<td><input type="text" asp-for="RunningTime" /></td>
+			</tr>
+
+			<tr>
+				<td><label asp-for="Age">Age:</label></td>
+				<td><input type="text" type="text" asp-for="Age" /></td>
+			</tr>
+
+			<tr>
+				<td><label asp-for="İmageUrl">ImageURL:</label></td>
+				<td><input type="text" type="url" asp-for="Age" /></td>
+			</tr>
+
+
+			<tr>
+				<td><label asp-for="Categories">Categories:</label></td>
+				<td>
+				@foreach(var item in Model.Categories)
+				{
+					@item.CategoryName<br />
+					
+				}
+				</td>				
+				
+			</tr>
+
+			<tr>
+				<td><label asp-for="Artists">Cast:</label></td>
+				<td>
+						@foreach (var item in Model.Artists)
+						{
+							@item.FullName
+							<br />
+
+						}
+				</td>
+
+			</tr>
+
+		</tbody>
+
+	</table>
+
+	<button class="btn btn-primary">Update</button>
+
+</form>
