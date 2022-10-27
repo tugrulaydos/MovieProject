@@ -17,7 +17,7 @@ namespace EntityLayer.Concrete
 
         public short? BirthData { get; set; }
 
-        public ICollection<Film> Films { get; set; }
+        public ICollection<ArtistFilm> Films { get; set; }      
      
 
     }

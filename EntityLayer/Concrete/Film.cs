@@ -12,10 +12,7 @@ namespace EntityLayer.Concrete
 {
     public class Film
     {
-        public Film()
-        {
-            Categories = new HashSet<Category>();
-        }
+       
         [Key]
         public int ID { get; set; }
 
@@ -44,9 +41,9 @@ namespace EntityLayer.Concrete
         public short? RunningTime { get; set; }
         
         public ICollection<Comment> _Comment { get; set; }
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<CategoryFilm> Categories { get; set; }
 
-        public ICollection<Artist> Artists { get; set; }
+        public ICollection<ArtistFilm> Artists { get; set; }
 
 
       

@@ -8,11 +8,7 @@ using System.Threading.Tasks;
 namespace EntityLayer.Concrete
 {
     public class Category
-    {
-        public Category()
-        {
-            Films = new HashSet<Film>();
-        }
+    {      
 
         [Key]
         public int ID { get; set; }
@@ -20,11 +16,7 @@ namespace EntityLayer.Concrete
         [StringLength(50)]
         public string CategoryName { get; set; }
 
-        public ICollection<Film> Films { get; set; }
-
-       
-
-      
+        public ICollection<CategoryFilm> Films { get; set; }      
 
     }
 }

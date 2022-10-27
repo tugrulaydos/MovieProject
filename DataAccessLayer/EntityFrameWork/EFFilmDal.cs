@@ -16,32 +16,53 @@ namespace DataAccessLayer.EntityFrameWork
 {
 	public class EFFilmDal : GenericRepository<Film>, IFilmDal
 	{
-		public List<Film> GetFilmCategoriesByID(int id)
+		public List<Film> GetFilmCategoriesByID(int id) 
 		{
 			var c = new ContextMovieDB();
 
-			var values1 = c.Films.Include(x => x.Categories).FirstOrDefault(y => y.ID == id); //Seçtiğimiz Film
+			//var values1 = c.Films.Include(x => x.Categories).FirstOrDefault(y => y.ID == id); //Seçtiğimiz Film
 
-			List<int> IDCategories = new List<int>(); //Seçilen Filmin Kategori ID'lerini Bu Listeye Atacağız
+			//List<int> IDCategories = new List<int>(); //Seçilen Filmin Kategori ID'lerini Bu Listeye Atacağız
 
-			foreach (var category in values1.Categories) //Category ID'si bu olan filmleri alacağız.
+			//foreach (var category in values1.Categories) //Category ID'si bu olan filmleri alacağız.
+			//{
+			//	IDCategories.Add(category.ID);
+			//}			
+
+			//var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.ID))).ToList();
+
+			//values2 = values2.Where(y => y.Categories.Count > 0).ToList();
+
+
+			//return values2;
+
+			var values1 = c.Films.Include(x => x.Categories).ThenInclude(y => y.Category).FirstOrDefault(z => z.ID == id); //Seçtiğimiz Film
+
+            List<int> IDCategories = new List<int>(); //Seçilen Filmin Kategori ID'lerini Bu Listeye Atacağız
+
+			foreach (var item in values1.Categories) //Category ID'si bu olan filmleri alacağız.
 			{
-				IDCategories.Add(category.ID);
-			}			
+                IDCategories.Add(item.Category.ID);
 
-			var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.ID))).ToList();
+            }
 
-			values2 = values2.Where(y => y.Categories.Count > 0).ToList();		
+			var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.Category.ID))).ToList();
+
+			values2 = values2.Where(a => a.Categories.Count > 0).ToList(); 
+
 
 
 			return values2;			
 		}
 
-		public List<Film> GetFilmCategory() 
+		public List<Film> GetFilmCategory()  
 		{
             var c = new ContextMovieDB();
 
-			var values = c.Films.Include(x => x.Categories).Include(x => x.Artists).ToList(); //Category ve Artist'i de getirecektir.
+			//var values = c.Films.Include(x => x.Categories).Include(x => x.Artists).ToList(); //Category ve Artist'i de getirecektir.
+
+			var values = c.Films.Include(x => x.Categories).ThenInclude(z => z.Category).Include(a => a.Artists).ThenInclude(b => b.Artist).ToList();
+			
 
 			return values;
 
@@ -51,9 +72,11 @@ namespace DataAccessLayer.EntityFrameWork
 		{
 
 			var c = new ContextMovieDB();
-			
 
-			return c.Films.Include(x=>x.Categories).FirstOrDefault(filter);
+
+			//return c.Films.Include(x=>x.Categories).FirstOrDefault(filter);
+
+			return c.Films.Include(x => x.Categories).ThenInclude(y => y.Category).FirstOrDefault(filter);
 
 		}
 
@@ -61,7 +84,9 @@ namespace DataAccessLayer.EntityFrameWork
 		{
 			var c = new ContextMovieDB();
 
-			return c.Films.Include(y => y.Categories).Include(z=>z.Artists).FirstOrDefault(filter);
+			//return c.Films.Include(y => y.Categories).Include(z=>z.Artists).FirstOrDefault(filter);
+
+			return c.Films.Include(x => x.Categories).ThenInclude(y => y.Category).Include(a => a.Artists).ThenInclude(b => b.Artist).FirstOrDefault(filter);
 
 		}
 

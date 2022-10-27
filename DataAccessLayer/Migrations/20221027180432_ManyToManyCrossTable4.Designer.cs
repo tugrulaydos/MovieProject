@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ContextMovieDB))]
-    partial class ContextMovieDBModelSnapshot : ModelSnapshot
+    [Migration("20221027180432_ManyToManyCrossTable4")]
+    partial class ManyToManyCrossTable4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,6 +35,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<short?>("BirthData")
                         .HasColumnType("smallint");
 
+                    b.Property<int?>("FilmID")
+                        .HasColumnType("int");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -40,22 +45,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Artists");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.ArtistFilm", b =>
-                {
-                    b.Property<int>("ArtistID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FilmID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArtistID", "FilmID");
-
                     b.HasIndex("FilmID");
 
-                    b.ToTable("ArtistFilms");
+                    b.ToTable("Artists");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
@@ -71,24 +63,14 @@ namespace DataAccessLayer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<int?>("FilmID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.CategoryFilm", b =>
-                {
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FilmID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CategoryID", "FilmID");
 
                     b.HasIndex("FilmID");
 
-                    b.ToTable("CategoryFilms");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -428,42 +410,18 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.ArtistFilm", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Artist", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Artist", "Artist")
-                        .WithMany("Films")
-                        .HasForeignKey("ArtistID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Film", "Film")
+                    b.HasOne("EntityLayer.Concrete.Film", null)
                         .WithMany("Artists")
-                        .HasForeignKey("FilmID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artist");
-
-                    b.Navigation("Film");
+                        .HasForeignKey("FilmID");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.CategoryFilm", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
                 {
-                    b.HasOne("EntityLayer.Concrete.Category", "Category")
-                        .WithMany("Films")
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EntityLayer.Concrete.Film", "Film")
+                    b.HasOne("EntityLayer.Concrete.Film", null)
                         .WithMany("Categories")
-                        .HasForeignKey("FilmID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Film");
+                        .HasForeignKey("FilmID");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -572,16 +530,6 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Artist", b =>
-                {
-                    b.Navigation("Films");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
-                {
-                    b.Navigation("Films");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Film", b =>
