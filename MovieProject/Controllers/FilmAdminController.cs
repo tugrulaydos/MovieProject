@@ -56,8 +56,7 @@ namespace MovieProject.Controllers
             var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistOpt);
 
             Film f1 = new Film()
-            {
-                ID = f.ID,
+            {                
                 Name = f.Name,
                 Scenerio = f.Scenerio,
                 Producer = f.Producer,
@@ -70,7 +69,7 @@ namespace MovieProject.Controllers
                 RunningTime = f.RunningTime,
                 Age = f.Age,
                 Categories = ValueCategories,
-                Artists=ValueArtist,
+                Artists=ValueArtist
 
                
                
