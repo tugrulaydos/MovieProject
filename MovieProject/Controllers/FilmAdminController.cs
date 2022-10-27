@@ -55,33 +55,53 @@ namespace MovieProject.Controllers
 
             var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistOpt);
 
-            Film f1 = new Film()
-            {                
-                Name = f.Name,
-                Scenerio = f.Scenerio,
-                Producer = f.Producer,
-                Director = f.Director,
-                IMDBRaiting = f.IMDBRaiting,
-                Story = f.Story,
-                İmageUrl = f.İmageUrl,
-                Country = f.Country,
-                ReleaseYear = f.ReleaseYear,
-                RunningTime = f.RunningTime,
-                Age = f.Age,
-                Categories = ValueCategories,
-                Artists=ValueArtist
+            ICollection<Category> c1 = (ICollection<Category>)ValueCategories; 
 
+            //Film f1 = new Film()
+            //{                
+            //    Name = f.Name,
+            //    Scenerio = f.Scenerio,
+            //    Producer = f.Producer,
+            //    Director = f.Director,
+            //    IMDBRaiting = f.IMDBRaiting,
+            //    Story = f.Story,
+            //    İmageUrl = f.İmageUrl,
+            //    Country = f.Country,
+            //    ReleaseYear = f.ReleaseYear,
+            //    RunningTime = f.RunningTime,
+            //    Age = f.Age                           
                
                
-            };
+            //};
 
-             c.Films.Add(f1);
+            foreach(var item in GenreID)
+            {
+                CategoryFilm _categoryFilm = new CategoryFilm()
+                {
+                    CategoryID = item,
+                    Film = f
+                };
 
-             c.SaveChanges();          
+                c.CategoryFilms.Add(_categoryFilm);
+            }
 
-            
-                        
-             return View();
+            foreach(var item in ArtistOpt)
+            {
+                ArtistFilm _artistFilm = new ArtistFilm()
+                {
+                    ArtistID = item,
+                    Film = f
+                };
+                c.ArtistFilms.Add(_artistFilm);
+            }            
+
+             c.Films.Add(f);
+
+             c.SaveChanges();
+
+
+
+            return RedirectToAction("Index", "FilmAdmin");
         }
     }
 }

@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(ContextMovieDB))]
-    partial class ContextMovieDBModelSnapshot : ModelSnapshot
+    [Migration("20221027173820_ManyToManyCrossTable1")]
+    partial class ManyToManyCrossTable1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,36 @@ namespace DataAccessLayer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ArtistFilm", b =>
+                {
+                    b.Property<int>("ArtistsID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArtistsID", "FilmsID");
+
+                    b.HasIndex("FilmsID");
+
+                    b.ToTable("ArtistFilm");
+                });
+
+            modelBuilder.Entity("CategoryFilm", b =>
+                {
+                    b.Property<int>("CategoriesID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CategoriesID", "FilmsID");
+
+                    b.HasIndex("FilmsID");
+
+                    b.ToTable("CategoryFilm");
+                });
 
             modelBuilder.Entity("EntityLayer.Concrete.Artist", b =>
                 {
@@ -51,7 +83,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("FilmID")
                         .HasColumnType("int");
 
-                    b.HasKey("ArtistID", "FilmID");
+                    b.HasIndex("ArtistID");
 
                     b.HasIndex("FilmID");
 
@@ -84,7 +116,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("FilmID")
                         .HasColumnType("int");
 
-                    b.HasKey("CategoryID", "FilmID");
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("FilmID");
 
@@ -428,16 +460,46 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ArtistFilm", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Artist", null)
+                        .WithMany()
+                        .HasForeignKey("ArtistsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CategoryFilm", b =>
+                {
+                    b.HasOne("EntityLayer.Concrete.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Concrete.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.ArtistFilm", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Artist", "Artist")
-                        .WithMany("Films")
+                        .WithMany()
                         .HasForeignKey("ArtistID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.Film", "Film")
-                        .WithMany("Artists")
+                        .WithMany()
                         .HasForeignKey("FilmID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -450,13 +512,13 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.CategoryFilm", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
-                        .WithMany("Films")
+                        .WithMany()
                         .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.Film", "Film")
-                        .WithMany("Categories")
+                        .WithMany()
                         .HasForeignKey("FilmID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -574,22 +636,8 @@ namespace DataAccessLayer.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.Artist", b =>
-                {
-                    b.Navigation("Films");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
-                {
-                    b.Navigation("Films");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Film", b =>
                 {
-                    b.Navigation("Artists");
-
-                    b.Navigation("Categories");
-
                     b.Navigation("_Comment");
                 });
 

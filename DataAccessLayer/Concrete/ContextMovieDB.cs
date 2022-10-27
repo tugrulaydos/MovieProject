@@ -23,17 +23,43 @@ namespace DataAccessLayer.Concrete
 
         }
 
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    base.OnModelCreating(modelBuilder);
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-        //    modelBuilder.Entity<FilmCategory>()
-        //        .HasKey(fc => new { fc.CategoryID, fc.FilmID });
+            //Artist--Film
+            modelBuilder.Entity<ArtistFilm>()
+                .HasKey(af => new { af.ArtistID, af.FilmID });
 
-        //    modelBuilder.Entity<FilmArtist>()
-        //        .HasKey(fa => new { fa.FilmID, fa.ArtistID });         
+            modelBuilder.Entity<ArtistFilm>()
+                .HasOne(af => af.Artist)
+                .WithMany(a => a.Films)
+                .HasForeignKey(af => af.ArtistID);
 
-        //}
+            modelBuilder.Entity<ArtistFilm>()
+                .HasOne(af => af.Film)
+                .WithMany(f => f.Artists)
+                .HasForeignKey(af => af.FilmID);
+
+
+            //Category--Film
+            modelBuilder.Entity<CategoryFilm>()
+                .HasKey(cf => new { cf.CategoryID, cf.FilmID });
+
+            modelBuilder.Entity<CategoryFilm>()
+                .HasOne(cf => cf.Category)
+                .WithMany(c => c.Films)
+                .HasForeignKey(cf => cf.CategoryID);
+
+            modelBuilder.Entity<CategoryFilm>()
+                .HasOne(cf => cf.Film)
+                .WithMany(f => f.Categories)
+                .HasForeignKey(cf => cf.FilmID);
+
+
+
+
+        }
 
 
         public DbSet<Comment> Comments { get; set; }       
@@ -47,6 +73,12 @@ namespace DataAccessLayer.Concrete
         public DbSet<Watched> Watcheds { get; set; }
 
         public DbSet<WatchList> WatchLists { get; set; }
+
+        public DbSet<CategoryFilm> CategoryFilms { get; set; }
+
+        public DbSet<ArtistFilm> ArtistFilms { get; set; }
+
+      
 
        
     }

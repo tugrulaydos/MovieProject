@@ -69,7 +69,7 @@
 				<td>
 				@foreach(var item in Model.Categories)
 				{
-					@item.CategoryName<br />
+					@item.Category.CategoryName<br />
 					
 				}
 				</td>				
@@ -81,7 +81,7 @@
 				<td>
 						@foreach (var item in Model.Artists)
 						{
-							@item.FullName
+							@item.Artist.FullName
 							<br />
 
 						}
