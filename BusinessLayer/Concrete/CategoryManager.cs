@@ -27,6 +27,11 @@ namespace BusinessLayer.Concrete
             return _categoryDal.GetCategoriesByCategoryID(_categoryID);
         }
 
+        public List<Category> GetCategoriesByCategoryID(List<int> _categoryID)
+        {
+            throw new NotImplementedException();
+        }
+
         public void TAdd(Category t)
         {
             _categoryDal.insert(t);

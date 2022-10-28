@@ -1,0 +1,36 @@
+﻿@using EntityLayer.Concrete
+@model Artist
+
+
+@{
+	ViewData["Title"] = "AddArtist";
+	Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container">
+	<h1>ADD CAST</h1>
+	<form asp-controller="ArtistAdmin" asp-action="AddArtist">
+
+		<label asp-for="FullName"></label>
+		<input type="text" name="FullName" />
+		<br />
+
+		<label asp-for="BirthData"></label>
+		<input type="text" asp-for="BirthData" />
+		<br />
+
+		<input type="button" value="Submit" class="bg-secondary" />
+
+
+	</form>
+</div>
+
+
+
+
+
+
+
+
+
