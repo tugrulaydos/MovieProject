@@ -16,21 +16,25 @@
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
-<h1>Films</h1>
+<div class="container">
+<h1>MOVIES</h1>
 
 <br />
 
-<table class="table table-bordered">
+<table class="table">
+    <thead>
     <tr>
         <th>ID</th>
-        <th>FilmName</th>
-        <th>Genre</th>
-        <th>Go to the Film</th>
+        <th>MOVIE NAME</th>
+        <th>GENRE</th>
+        <th>GO TO THE FILM</th>
 
     </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
+        <tbody>
         <tr>
             <td>@item.ID</td>
             <td>@item.Name</td>
@@ -43,12 +47,13 @@
                 }
                 
             </td>
-            <td><a href="/FilmAdmin/MovieDetail/@item.ID" class="btn btn-info">GO</a></td>
+            <td><a href="/FilmAdmin/MovieDetail/@item.ID" class="btn btn-danger">GO</a></td>
         </tr>
+        </tbody>
 
     }
 
-
 </table>
 
-<a href="/FilmAdmin/AddMovie" class="btn btn-info">New Movie</a>
+<a href="/FilmAdmin/AddMovie" class="btn btn-success">ADD</a>
+</div>

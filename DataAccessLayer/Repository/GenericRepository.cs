@@ -40,7 +40,7 @@ namespace DataAccessLayer.Repository
         public T GetByID(Expression<Func<T, bool>> filter)  //Tek Bir Entity Döndürür.
         {
             //return C.Set<T>().SingleOrDefault(filter);
-            return table.Find(filter);
+            return table.FirstOrDefault(filter);
         }
 
         public List<T> GetList()  //Tüm Entity'leri Listeler.

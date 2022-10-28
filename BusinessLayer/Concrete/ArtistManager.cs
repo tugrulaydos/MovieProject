@@ -27,12 +27,12 @@ namespace BusinessLayer.Concrete
 
         public Artist GetByID(int ID)
         {
-            throw new NotImplementedException();
+            return _artistDal.GetByID(x=>x.ID==ID);
         }
 
         public void TAdd(Artist t)
         {
-            throw new NotImplementedException();
+            _artistDal.insert(t);
         }
 
         public void TDelete(Artist t)
@@ -47,7 +47,7 @@ namespace BusinessLayer.Concrete
 
         public void TUpdate(Artist t)
         {
-            throw new NotImplementedException();
+            _artistDal.Update(t);
         }
     }
 }
