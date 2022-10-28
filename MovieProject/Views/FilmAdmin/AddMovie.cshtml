@@ -67,7 +67,7 @@
 			<br />
 
 			<legend>Choose Movie's Artists</legend>
-			<select name="ArtistOpt[]" multiple id="ArtistOpt">
+			<select name="ArtistID[]" multiple id="ArtistID">
 				@foreach (var item in ViewBag.Artists as List<Artist>)
 				{
 					<option value=@item.ID>@item.FullName</option>

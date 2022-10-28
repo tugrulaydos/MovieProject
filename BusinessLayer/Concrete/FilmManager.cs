@@ -45,7 +45,10 @@ namespace BusinessLayer.Concrete
 			return _filmDal.GetFilmCategoriesByID(id);
 		}
 
-		
+		public void ADDFilm(Film _film, int[] _CatogoryIDs, int[] _ArtistIDs)
+		{
+			throw new NotImplementedException();
+		}
 
 		public void TAdd(Film t)
 		{

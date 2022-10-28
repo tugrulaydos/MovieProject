@@ -47,59 +47,16 @@ namespace MovieProject.Controllers
         }
 
         [HttpPost]
-        public  IActionResult AddMovie(Film f,List<int> GenreID, int[] ArtistOpt)
+        public  IActionResult AddMovie(Film f,int[] GenreID, int[] ArtistID)
         {
-            var c = new ContextMovieDB(); 
-             
-            var ValueCategories = _categoryManager.GetCategoriesByCategoryID(GenreID);
 
-            var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistOpt);
+            //var ValueCategories = _categoryManager.GetCategoriesByCategoryID(GenreID);
 
-            ICollection<Category> c1 = (ICollection<Category>)ValueCategories; 
-
-            //Film f1 = new Film()
-            //{                
-            //    Name = f.Name,
-            //    Scenerio = f.Scenerio,
-            //    Producer = f.Producer,
-            //    Director = f.Director,
-            //    IMDBRaiting = f.IMDBRaiting,
-            //    Story = f.Story,
-            //    İmageUrl = f.İmageUrl,
-            //    Country = f.Country,
-            //    ReleaseYear = f.ReleaseYear,
-            //    RunningTime = f.RunningTime,
-            //    Age = f.Age                           
-               
-               
-            //};
-
-            foreach(var item in GenreID)
-            {
-                CategoryFilm _categoryFilm = new CategoryFilm()
-                {
-                    CategoryID = item,
-                    Film = f
-                };
-
-                c.CategoryFilms.Add(_categoryFilm);
-            }
-
-            foreach(var item in ArtistOpt)
-            {
-                ArtistFilm _artistFilm = new ArtistFilm()
-                {
-                    ArtistID = item,
-                    Film = f
-                };
-                c.ArtistFilms.Add(_artistFilm);
-            }            
-
-             c.Films.Add(f);
-
-             c.SaveChanges();
+            //var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistID);
 
 
+            _filmManager.ADDFilm(f,GenreID,ArtistID);
+           
 
             return RedirectToAction("Index", "FilmAdmin");
         }

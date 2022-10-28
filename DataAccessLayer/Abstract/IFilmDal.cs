@@ -18,6 +18,8 @@ namespace DataAccessLayer.Abstract
 
 		public Film GetFilmByFilmID(Expression<Func<Film, bool>> filter);
 
+		public void ADDFilm(Film _film, int[] CategoryIDs, int[] ArtistIDs);
+
       
 
 
