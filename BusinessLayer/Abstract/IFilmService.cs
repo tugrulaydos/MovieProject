@@ -17,6 +17,8 @@ namespace BusinessLayer.Abstract
 
 		public Film GetFilmByFilmID(int id); //Film ID'sine Göre İstenilen Filmi Getireceğiz.
 
+		public void ADDFilm(Film _film, int[] _CatogoryIDs, int[] _ArtistIDs);
+
 		
 
 		

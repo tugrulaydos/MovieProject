@@ -9,7 +9,7 @@ namespace BusinessLayer.Abstract
 {
     public interface IArtistService:IGenericService<Artist>
     {
-        public List<Artist> GetArtistsByArtistID(int[] ArtistID);
+        public List<Artist> GetArtistsByArtistID(int[] ArtistID); //Bu metodu kullanmadık silinebilir.
         
 
 

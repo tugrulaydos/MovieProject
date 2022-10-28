@@ -22,7 +22,7 @@ namespace BusinessLayer.Concrete
             throw new NotImplementedException();
         }
 
-        public List<Category> GetCategoriesByCategoryID(List<int> _categoryID)
+        public List<Category> GetCategoriesByCategoryID(int[] _categoryID)
         {
             return _categoryDal.GetCategoriesByCategoryID(_categoryID);
         }

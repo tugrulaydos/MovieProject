@@ -90,6 +90,38 @@ namespace DataAccessLayer.EntityFrameWork
 
 		}
 
+		public void ADDFilm(Film _film, int[] CategoryIDs, int[] ArtistIDs)
+		{
+			var c = new ContextMovieDB();
+
+            foreach (var item in CategoryIDs)
+            {
+                CategoryFilm _categoryFilm = new CategoryFilm()
+                {
+                    CategoryID = item,
+                    Film = _film
+                };
+
+                c.CategoryFilms.Add(_categoryFilm);
+            }
+
+            foreach (var item in ArtistIDs)
+            {
+                ArtistFilm _artistFilm = new ArtistFilm()
+                {
+                    ArtistID = item,
+                    Film = _film
+                };
+                c.ArtistFilms.Add(_artistFilm);
+            }
+
+            c.Films.Add(_film);
+
+            c.SaveChanges();			
+
+
+        }
+
 		
 	}
 }

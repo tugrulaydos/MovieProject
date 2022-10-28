@@ -12,7 +12,7 @@ namespace DataAccessLayer.EntityFrameWork
 {
     public class EFCategoryDal : GenericRepository<Category>, ICategoryDal
     {
-        public List<Category> GetCategoriesByCategoryID(List<int> _categoryID)
+        public List<Category> GetCategoriesByCategoryID(int[] _categoryID)
         {
             var c = new ContextMovieDB();          
 
