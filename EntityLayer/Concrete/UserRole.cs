@@ -9,6 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class UserRole:IdentityRole<int>
     {
+        public DateTime? CreationDate { get; set; }
 
     }
 }
