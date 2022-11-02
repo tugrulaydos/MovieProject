@@ -8,20 +8,12 @@
 }
 
 
-
-
-
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/AdminLayout.cshtml";
-}
-
 <div class="container">
 <h1>MOVIES</h1>
 
 <br />
 
-<table class="table">
+<table class="table" id="myTable">
     <thead>
     <tr>
         <th>ID</th>
@@ -45,6 +37,7 @@
                        @x.Category.CategoryName<br />
                                         
                 }
+              
                 
             </td>
             <td><a href="/FilmAdmin/MovieDetail/@item.ID" class="btn btn-danger">GO</a></td>
@@ -52,8 +45,10 @@
         </tbody>
 
     }
-
+  
 </table>
+    <br />
 
-<a href="/FilmAdmin/AddMovie" class="btn btn-success">ADD</a>
+    <a href="/FilmAdmin/AddMovie/" class="btn btn-success">ADD New Movie</a>
+
 </div>

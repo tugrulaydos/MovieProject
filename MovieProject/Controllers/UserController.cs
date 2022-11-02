@@ -4,6 +4,8 @@ using EntityLayer.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using EntityLayer.ViewModels;
+using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFrameWork;
 
 namespace MovieProject.Controllers
 {
@@ -15,6 +17,8 @@ namespace MovieProject.Controllers
 
         readonly SignInManager<User> _signInManager;
 
+      
+
         public UserController(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager)
         {
             _signInManager = signInManager;
@@ -24,7 +28,8 @@ namespace MovieProject.Controllers
 
        
         public IActionResult Index()
-        {
+        {            
+
             return View();
         }
 
@@ -112,8 +117,17 @@ namespace MovieProject.Controllers
                 
                 IdentityResult result = await _userManager.CreateAsync(_User, userVM.Password);  //Gerekli Kontroller Yapılıyor.
 
+
+
+
+
+
+
                 if (result.Succeeded)
-                    return RedirectToAction("Index","Home");
+                {
+                    await _userManager.AddToRoleAsync(_User, "User");
+                    return RedirectToAction("Index", "HomePage");
+                }
 
                 else
                 {
