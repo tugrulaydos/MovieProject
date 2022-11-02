@@ -2,6 +2,7 @@
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieProject.Models;
@@ -16,9 +17,11 @@ namespace MovieProject.Controllers
         CategoryManager _categoryManager = new CategoryManager(new EFCategoryDal());
 
         ArtistManager _artistManager = new ArtistManager(new EFArtistDal());
+
+      
         public IActionResult Index()
         {
-            var values = _filmManager.FilmCategory();
+            var values = _filmManager.FilmCategoryArtist();
 
             return View(values);
         }

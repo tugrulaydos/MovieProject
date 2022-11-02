@@ -16,6 +16,8 @@ namespace MovieProject.Controllers
             return View(values);
         }
 
+    
+
         public IActionResult AddCategory()
         {
 

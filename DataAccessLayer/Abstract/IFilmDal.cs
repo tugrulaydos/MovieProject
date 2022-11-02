@@ -10,7 +10,7 @@ namespace DataAccessLayer.Abstract
 {
 	public interface IFilmDal:IGenericDal<Film>
 	{
-		public List<Film> GetFilmCategory();
+		public List<Film> GetFilmCategoryArtist();
 
 		public Film GetFilmCategoryByID(Expression<Func<Film, bool>> filter);
 
@@ -19,6 +19,8 @@ namespace DataAccessLayer.Abstract
 		public Film GetFilmByFilmID(Expression<Func<Film, bool>> filter);
 
 		public void ADDFilm(Film _film, int[] CategoryIDs, int[] ArtistIDs);
+
+		public List<Film> GetFilmCategoryArtistTake6();
 
       
 

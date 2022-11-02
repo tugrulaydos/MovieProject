@@ -10,7 +10,7 @@ namespace MovieProject.ViewComponents
 
         public IViewComponentResult Invoke()
 		{
-			var values = _filmManager.FilmCategory();
+			var values = _filmManager.GetFilmCategoryArtistTake6();
 
 			return View(values);
 

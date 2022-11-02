@@ -31,37 +31,17 @@ namespace MovieProject.Controllers
 
             fc1.Value1 = ValueMovie;
 
-            fc1.Value2 = ValueComment;          
-            
+            fc1.Value2 = ValueComment;           
             
 
             return View(fc1);
 		}   
         
-        public IActionResult Index2()
-        {
-            //var c = new ContextMovieDB();
-
-            //var values1 = c.Films.Include(x => x.Categories).FirstOrDefault(y => y.ID == 8); //Seçtiğimiz Film
-
-            //List<int> IDCategories = new List<int>(); //Seçilen Filmin Kategori ID'lerini Bu Listeye Atacağız
-
-            //foreach (var category in values1.Categories)
-            //{
-            //    IDCategories.Add(category.ID);
-            //}
-
-            //var value2 = c.Categories.Include(a=>a.Films).Where(b => IDCategories.Contains(b.ID)).ToList();
-
-
-            return View();
-
-        }
+       
 
         public PartialViewResult DetailTop()  //Sayfaın üst kısmı
         {
           
-
             return PartialView();
         }
 

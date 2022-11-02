@@ -19,9 +19,9 @@ namespace BusinessLayer.Concrete
 			_filmDal = filmDal;
 		}
 
-		public List<Film> FilmCategory()
+		public List<Film> FilmCategoryArtist()
 		{
-			return _filmDal.GetFilmCategory();
+			return _filmDal.GetFilmCategoryArtist();
 		}
 
 		public Film GetByID(int id) //Tekil Veri Getirir.
@@ -47,7 +47,7 @@ namespace BusinessLayer.Concrete
 
 		public void ADDFilm(Film _film, int[] _CatogoryIDs, int[] _ArtistIDs)
 		{
-			throw new NotImplementedException();
+		    _filmDal.ADDFilm(_film, _CatogoryIDs, _ArtistIDs);
 		}
 
 		public void TAdd(Film t)
@@ -68,6 +68,11 @@ namespace BusinessLayer.Concrete
 		public void TUpdate(Film t)
 		{
 			_filmDal.Update(t);
+		}
+
+		public List<Film> GetFilmCategoryArtistTake6()
+		{
+			return _filmDal.GetFilmCategoryArtistTake6();
 		}
 	}
 }
