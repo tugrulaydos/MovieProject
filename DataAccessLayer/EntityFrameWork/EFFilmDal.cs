@@ -55,7 +55,7 @@ namespace DataAccessLayer.EntityFrameWork
 			return values2;			
 		}
 
-		public List<Film> GetFilmCategory()  
+		public List<Film> GetFilmCategoryArtist()  
 		{
             var c = new ContextMovieDB();
 
@@ -122,6 +122,13 @@ namespace DataAccessLayer.EntityFrameWork
 
         }
 
-		
+		public List<Film> GetFilmCategoryArtistTake6()
+		{
+            var c = new ContextMovieDB();
+
+			return c.Films.Include(x => x.Artists).ThenInclude(y => y.Artist).Include(a => a.Categories).ThenInclude(b => b.Category).Take(6).OrderByDescending(y=>y.ID).ToList();
+
+
+        }
 	}
 }

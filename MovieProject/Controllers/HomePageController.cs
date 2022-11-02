@@ -11,7 +11,7 @@ namespace MovieProject.Controllers
 		FilmManager _filmManger = new FilmManager(new EFFilmDal()); 
 		public IActionResult Index()		
 		{
-            var values = _filmManger.FilmCategory();
+			var values = _filmManger.GetFilmCategoryArtistTake6();
            
             return View(values);
             

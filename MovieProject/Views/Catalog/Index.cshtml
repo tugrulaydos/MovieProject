@@ -1,0 +1,26 @@
+﻿@using EntityLayer.Concrete
+@model CatalogModel
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/GeneralLayout.cshtml";
+}	
+	
+
+	<!-- page title -->
+	
+	@await Html.PartialAsync("PartialTop")
+
+
+	@await Html.PartialAsync("PartialMiddle")
+
+	<!-- expected premiere -->
+	@await Html.PartialAsync("PartialBottom")
+	<!-- end expected premiere -->
+
+	
+	
+
+
+
