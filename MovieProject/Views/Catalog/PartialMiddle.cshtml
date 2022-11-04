@@ -2,39 +2,79 @@
 @model CatalogModel
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	var a = 0;
+
+
+	$(document).ready(function () {
+
+		$(".ThisIsLi").click(function () {
+
+			a = $(this).attr("data-id");
+
+		});
+
+		$("#categorylist").click(function () {
+			debugger;
+
+			var aaa = new Object();
+
+			aaa.GenreID = a;
+			{/*aaa.ImdbMinValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");*/ }
+			{/*aaa.ImdbMaxValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");*/ }
+			{/*aaa.MinYear = $("#filter__years").find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");*/ }
+			{/*aaa.MaxYear = $("#filter__years").find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");*/ }
+
+			$.ajax({
+				type: "post",
+				url: "@Url.Action("Index")",
+				data: aaa,
+				datatype: "json",
+				success: function (msg) {
+					console.log(msg);
+				},
+				error: function (req, status, error) {
+					console.log(req);
+				}
+
+			});
+		});
+	});
+
+</script>
+
+
+
+
 <!-- filter -->
 <div class="filter">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-
-
 				<div class="filter__content">
-
-
 					<div class="filter__items">
 						<!-- filter item -->
 						<div class="filter__item" id="filter__genre">
 							<span class="filter__item-label">GENRE:</span>
 
-
 							<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								@*<input type="button" value="Drama">*@
+								<input type="button" id="GenreName" value="Drama">
+
 								<span></span>
 							</div>
 
-							<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" select aria-labelledby="filter-genre">
+							<ul id="categorylist" class="filter__item-menu dropdown-menu scrollbar-dropdown" select aria-labelledby="filter-genre">
 
-								<Select name="CategoryID">
-									@foreach (var item in Model.CategoriesForFilter)
-									{
-										@*<li>@item.CategoryName</li>	*@
-										<option value="@item.ID">@item.CategoryName</option>
-									}
+								@foreach (var item in Model.CategoriesForFilter)
+								{
+									<li data-id="@item.ID" class="ThisIsLi">@item.CategoryName</li>
 
-								</Select>
+								}
+
 								<br />
-
 
 							</ul>
 
@@ -53,9 +93,7 @@
 
 							<ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-quality">
 								<li>HD 1080</li>
-								<li>HD 720</li>
-								<li>DVD</li>
-								<li>TS</li>
+
 							</ul>
 						</div>
 						<!-- end filter item -->
@@ -99,7 +137,7 @@
 
 
 					<!-- filter btn -->
-					<button class="filter__btn" type="button">apply filter</button>
+					<button class="filter__btn" type="button" id="buttonjson">apply filter</button>
 
 
 					<!-- end filter btn -->
@@ -110,8 +148,6 @@
 	</div>
 </div>
 <!-- end filter -->
-
-
 <!-- catalog -->
 <div class="catalog">
 	<div class="container">
@@ -136,9 +172,9 @@
 								<div class="card__content">
 									<h3 class="card__title"><a href="#">@item.Name</a></h3>
 									<span class="card__category">
-										@foreach(var item2 in item.Categories)
+										@foreach (var item2 in item.Categories)
 										{
-										<a href="#">@item2.Category.CategoryName</a>										
+											<a href="#">@item2.Category.CategoryName</a>
 										}
 									</span>
 
@@ -152,58 +188,54 @@
 									</div>
 
 									<div class="card__description">
-										
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 			}
 			<!-- end card -->
-
 			<!-- card -->
 			@*<div class="col-6 col-sm-12 col-lg-6">
-				<div class="card card--list">
-					<div class="row">
-						<div class="col-12 col-sm-4">
-							<div class="card__cover">
-								<img src="~/Movie/img/covers/cover2.jpg" alt="">
-								<a href="#" class="card__play">
-									<i class="icon ion-ios-play"></i>
-								</a>
-							</div>
-						</div>
+			<div class="card card--list">
+			<div class="row">
+			<div class="col-12 col-sm-4">
+			<div class="card__cover">
+			<img src="~/Movie/img/covers/cover2.jpg" alt="">
+			<a href="#" class="card__play">
+			<i class="icon ion-ios-play"></i>
+			</a>
+			</div>
+			</div>
 
-						<div class="col-12 col-sm-8">
-							<div class="card__content">
-								<h3 class="card__title"><a href="#">Benched</a></h3>
-								<span class="card__category">
-									<a href="#">Comedy</a>
-								</span>
+			<div class="col-12 col-sm-8">
+			<div class="card__content">
+			<h3 class="card__title"><a href="#">Benched</a></h3>
+			<span class="card__category">
+			<a href="#">Comedy</a>
+			</span>
 
-								<div class="card__wrap">
-									<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
+			<div class="card__wrap">
+			<span class="card__rate"><i class="icon ion-ios-star"></i>7.1</span>
 
-									<ul class="card__list">
-										<li>HD</li>
-										<li>16+</li>
-									</ul>
-								</div>
+			<ul class="card__list">
+			<li>HD</li>
+			<li>16+</li>
+			</ul>
+			</div>
 
-								<div class="card__description">
-									<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="card__description">
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+			</div>
+			</div>
+			</div>
+			</div>
+			</div>
 			</div>*@
 			<!-- end card -->
-
-
-			
-			
 			<!-- paginator -->
 			<div class="col-12">
 				<ul class="paginator paginator--list">
