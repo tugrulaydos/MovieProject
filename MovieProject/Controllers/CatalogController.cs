@@ -14,7 +14,10 @@ namespace MovieProject.Controllers
     public class CatalogController : Controller
     {
         CategoryManager _categoryManager = new CategoryManager(new EFCategoryDal());
+
         FilmManager _FilmManager = new FilmManager(new EFFilmDal());
+
+        AjaxManager _ajaxManager = new AjaxManager(new EFAjaxDal());
         public IActionResult Index()
         {
             CatalogModel CM = new CatalogModel();
@@ -23,26 +26,55 @@ namespace MovieProject.Controllers
             return View(CM);
         }
 
+
         [HttpPost]
-        public  IActionResult Index(FilterVM fvm)
+        public  IActionResult Genre(int GenreID)  //Film Türü
         {
-            var c = new ContextMovieDB();
+                    
 
-            fvm.ImdbMinValue = fvm.ImdbMinValue / 10;
-            fvm.ImdbMaxValue = fvm.ImdbMaxValue / 10;
-
-          
-            var movies = c.Films.Include(x => x.Categories).ThenInclude(y => y.Category)
-                .Where(a => a.Categories.Any(b => b.Category.ID == fvm.GenreID)).ToList();
-            //var movies2 = movies.Where(a => a.Categories.Where(b => fvm.Genre.Contains(b.Category.CategoryName)).ToList();  
+            List<Film> Movies = _ajaxManager.GetFilmByGenreID(GenreID);
 
             CatalogModel CM = new CatalogModel();
-            CM.Films = movies;
+            CM.Films = Movies;
             CM.CategoriesForFilter = _categoryManager.TGetList();
 
-            return null;
+            return View(CM);            
 
         }
+
+        [HttpPost]
+        public IActionResult Imdb(ImdbFilter Filter)  //FilmImdb
+        {
+            Filter.ImdbMinValue = Filter.ImdbMinValue / 10;
+            Filter.ImdbMaxValue = Filter.ImdbMaxValue / 10;
+
+            List<Film> Movies = _ajaxManager.GetFilmByImdb(Filter);
+
+            CatalogModel CM = new CatalogModel();
+            CM.Films = Movies;
+            CM.CategoriesForFilter = _categoryManager.TGetList();
+
+
+            return View();
+
+
+        }
+
+        [HttpPost]
+        public IActionResult ReleaseYear(YearFilter Filter) //Vizyon Tarihi.
+        {
+            List<Film> Movies = _ajaxManager.GetFilmByYear(Filter);
+
+            CatalogModel CM = new CatalogModel();
+            CM.Films = Movies;
+            CM.CategoriesForFilter = _categoryManager.TGetList();
+
+
+
+            return View();
+        }
+
+       
 
         public PartialViewResult PartialTop()
         {
