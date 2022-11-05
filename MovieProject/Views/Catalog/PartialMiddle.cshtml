@@ -4,6 +4,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
 <script type="text/javascript">
 
 	var a = 0;
@@ -19,22 +20,17 @@
 
 		$("#categorylist").click(function () {
 			debugger;
-
-			var aaa = new Object();
-
-			aaa.GenreID = a;
-			{/*aaa.ImdbMinValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");*/ }
-			{/*aaa.ImdbMaxValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");*/ }
-			{/*aaa.MinYear = $("#filter__years").find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");*/ }
-			{/*aaa.MaxYear = $("#filter__years").find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");*/ }
-
+			var b = new Object();		
+			b.GenreID = a;
+			debugger;
 			$.ajax({
 				type: "post",
-				url: "@Url.Action("Index")",
-				data: aaa,
+				url: "@Url.Action("Genre")",
+				data: b,
 				datatype: "json",
-				success: function (msg) {
+				success: function (msg) {				
 					console.log(msg);
+					
 				},
 				error: function (req, status, error) {
 					console.log(req);
@@ -45,6 +41,68 @@
 	});
 
 </script>
+
+
+<script type="text/javascript">
+
+
+	$(document).ready(function () {
+
+		$("#buttonjson").click(function () {
+			debugger;
+
+			var a = new Object();
+
+			a.ImdbMinValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");
+			a.ImdbMaxValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");
+			debugger;
+			$.ajax({
+				type: "post",
+				url: "@Url.Action("Imdb")",
+				data: a,
+				datatype: "json",
+				success: function (msg) {
+					console.log(msg);
+				},
+				error: function (req, status, error) {
+					console.log(req);
+				}
+			});
+		});
+	});
+
+</script>
+
+<script type="text/javascript">
+
+
+	$(document).ready(function () {
+
+		$("#buttonjson2").click(function () {
+			debugger;
+
+			var a = new Object();
+
+			a.MinYear = $("#filter__years").find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");
+			a.MaxYear = $("#filter__years").find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");
+			debugger;
+			$.ajax({
+				type: "post",
+				url: "@Url.Action("ReleaseYear")",
+				data: a,
+				datatype: "json",
+				success: function (msg) {
+					console.log(msg);
+				},
+				error: function (req, status, error) {
+					console.log(req);
+				}
+			});
+		});
+	});
+
+</script>
+
 
 
 
@@ -137,7 +195,9 @@
 
 
 					<!-- filter btn -->
-					<button class="filter__btn" type="button" id="buttonjson">apply filter</button>
+					<button class="filter__btn" type="button" id="buttonjson">apply filter Imdb</button>
+
+					<button class="filter__btn" type="button" id="buttonjson2">apply filter Years</button>
 
 
 					<!-- end filter btn -->
