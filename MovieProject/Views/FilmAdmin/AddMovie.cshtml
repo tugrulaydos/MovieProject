@@ -57,16 +57,17 @@
 		<div class="col-3 border">
 			<legend>Choose Movie's Genre:</legend>
 
+			<select name="GenreID[]" multiple id="GenreID">
 			@foreach (var item in ViewBag.Category as List<Category>)
-			{
-				<input type="checkbox" name="GenreID" value=@item.ID>
-
-				@item.CategoryName
+			{				
+				<option value="@item.ID">@item.CategoryName</option>				
 			}
+			</select>
 
 			<br />
 
 			<legend>Choose Movie's Artists</legend>
+
 			<select name="ArtistID[]" multiple id="ArtistID">
 				@foreach (var item in ViewBag.Artists as List<Artist>)
 				{

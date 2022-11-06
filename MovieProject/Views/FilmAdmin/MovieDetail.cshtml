@@ -15,8 +15,11 @@
 <form asp-controller="FilmAdmin" asp-action="UpdateMovie">
 	<table class="table">
 
+	
+
 		<thead>Movie Detail</thead>
 		<tbody>
+			<input type="hidden" asp-for="ID">
 			<tr>
 				<td><label asp-for="Name">Name:</label></td>
 				<td><input type="text" asp-for="Name" /></td>
@@ -58,18 +61,19 @@
 
 			<tr>
 				<td><label asp-for="Age">Age:</label></td>
-				<td><input type="text" type="text" asp-for="Age" /></td>
+				<td><input type="text" asp-for="Age" /></td>
 			</tr>
 
 			<tr>
 				<td><label asp-for="İmageUrl">ImageURL:</label></td>
-				<td><input type="text" type="url" asp-for="Age" /></td>
+				<td><input type="url" asp-for="İmageUrl" /></td>
 			</tr>
 
 
 			<tr>
 				<td><label asp-for="Categories">Categories:</label></td>
 				<td>
+			     <input type="hidden" asp-for="@Model.Categories" />
 				@foreach(var item in Model.Categories)
 				{
 					@item.Category.CategoryName<br />
@@ -82,6 +86,7 @@
 			<tr>
 				<td><label asp-for="Artists">Cast:</label></td>
 				<td>
+						<input type="hidden" asp-for="@Model.Artists" />
 						@foreach (var item in Model.Artists)
 						{
 							@item.Artist.FullName

@@ -23,6 +23,8 @@ builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterVa
 
 builder.Services.AddDbContext<ContextMovieDB>();
 
+builder.Services.AddMemoryCache();
+
 builder.Services.AddIdentity<User, UserRole>(x =>
 {
     x.Password.RequiredLength = 5; //En az kaç karakterli olmasý gerektiðini belirtiyoruz.
@@ -36,6 +38,7 @@ builder.Services.AddIdentity<User, UserRole>(x =>
 
 }).AddPasswordValidator<CustomPasswordValidation>()          
           .AddErrorDescriber<CustomUserValidation>().AddEntityFrameworkStores<ContextMovieDB>();
+
 
 
 
