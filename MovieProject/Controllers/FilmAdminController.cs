@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieProject.Models;
 using System.ComponentModel;
+using System.Text;
 
 namespace MovieProject.Controllers
 {
@@ -35,8 +36,12 @@ namespace MovieProject.Controllers
         }
 
         public IActionResult UpdateMovie(Film f1)
-        {
-            
+        {            
+
+            _filmManager.TUpdate(f1);
+
+
+
             return RedirectToAction("Index");
         }
 

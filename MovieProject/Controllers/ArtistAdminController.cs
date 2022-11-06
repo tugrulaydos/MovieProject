@@ -28,13 +28,9 @@ namespace MovieProject.Controllers
 
 		[HttpPost]
 		public IActionResult UpdateArtist(Artist A)
-		{
-			Artist A1 = new Artist();
-			A1.ID = A.ID;
-			A1.FullName = A.FullName;
-			A1.BirthData = A.BirthData;
+		{		
 			
-			_artistManager.TUpdate(A1);
+			_artistManager.TUpdate(A);
 
 			return RedirectToAction("Index", "ArtistAdmin");
 
