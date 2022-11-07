@@ -8,9 +8,10 @@
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-    <h1>Rolles</h1>
+<div class="container">
+<h1>Rolles</h1>
 
-    <table class="table" id="myTable">
+<table id="myTable" class="display" style="width:100%">
         <thead>
             <tr>
                 <th>
@@ -52,8 +53,8 @@
         </tbody>
     </table>
 
-    <a class="btn btn-success" asp-action="CreateRole" asp-controller="Role">ADD</a>
-
+    <a class="btn btn-success" asp-action="CreateRole" asp-controller="Role">ADD New Role</a>
+    </div>
 
 
 
