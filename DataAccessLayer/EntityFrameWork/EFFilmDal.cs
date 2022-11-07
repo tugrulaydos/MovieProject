@@ -130,5 +130,12 @@ namespace DataAccessLayer.EntityFrameWork
 
 
         }
+
+		public Film GetFilmCategoryArtistByID(Expression<Func<Film, bool>> filter)
+		{
+			var context = new ContextMovieDB();
+
+			return context.Films.Include(x => x.Categories).Include(y => y.Artists).FirstOrDefault(filter);
+        }
 	}
 }

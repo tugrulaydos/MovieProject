@@ -11,6 +11,8 @@ namespace BusinessLayer.Abstract
 	{
 		public List<Film> FilmCategoryArtist(); //Tüm Filmeleri Getireceğiz Artist ve Category tabloları dahil ediliyor.
 
+		public Film FilmCategoryArtistByID(int ID); //Artist ve Category Dahil Tek Bir Film Entity'si Getirir.
+
 		public Film GetFilCtegoryByID(int id);
 
 		public List<Film> GetFilmCategoriesID(int id);  //Category ID'lerine göre Filmleri Getirecektir.
