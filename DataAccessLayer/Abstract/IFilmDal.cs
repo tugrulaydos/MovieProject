@@ -24,6 +24,8 @@ namespace DataAccessLayer.Abstract
 
 		public Film GetFilmCategoryArtistByID(Expression<Func<Film, bool>> filter); //Artist ve Category Dahil Tek Bir Film Entity'si Getirir.
 
+		public void UpdateCategoryArtist(int FilmID, int[] GenreIDs, int[] ArtistIDs);
+
 
 
 

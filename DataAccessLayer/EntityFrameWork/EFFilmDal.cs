@@ -137,5 +137,53 @@ namespace DataAccessLayer.EntityFrameWork
 
 			return context.Films.Include(x => x.Categories).Include(y => y.Artists).FirstOrDefault(filter);
         }
+
+		public void UpdateCategoryArtist(int FilmID, int[] GenreIDs, int[] ArtistIDs)
+		{
+            var context = new ContextMovieDB();
+            Film? movie = context.Films.Include(x => x.Categories).ThenInclude(y => y.Category).Include(a => a.Artists).ThenInclude(b => b.Artist).FirstOrDefault(x => x.ID == FilmID);
+
+
+            foreach (var category in movie.Categories)
+            {
+                movie.Categories.Remove(category);
+
+            }
+
+            foreach (var artist in movie.Artists)
+            {
+                movie.Artists.Remove(artist);
+
+            }
+
+
+            foreach (var item in GenreIDs)
+            {
+                CategoryFilm CF = new CategoryFilm
+                {
+                    CategoryID = item,
+                    Film = movie
+
+                };
+
+                movie.Categories.Add(CF);
+
+            }
+
+            foreach (var item in ArtistIDs)
+            {
+                ArtistFilm AF = new ArtistFilm
+                {
+                    ArtistID = item,
+                    Film = movie
+                };
+                movie.Artists.Add(AF);
+            }
+
+            context.SaveChanges();
+
+        }
+
+		
 	}
 }
