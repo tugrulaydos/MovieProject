@@ -12,97 +12,122 @@
 
 <div class="container">
 
-<form asp-controller="FilmAdmin" asp-action="UpdateMovie">
-	<table class="table">
-
-	
-
-		<thead>Movie Detail</thead>
-		<tbody>
-			<input type="hidden" asp-for="ID">
-			<tr>
-				<td><label asp-for="Name">Name:</label></td>
-				<td><input type="text" asp-for="Name" /></td>
-			</tr>
-
-			<tr>
-				<td><label asp-for="Director">Director:</label></td>
-				<td><input type="text" asp-for="Director" /></td>
-			</tr>
-
-			<tr>
-				<td><label asp-for="Country">Country:</label></td>
-				<td><input type="text" asp-for="Country" /></td>
-			</tr>
-
-			<tr>
-			<td><label asp-for="Scenerio">Scenerio:</label></td>
-			<td><input type="text" asp-for="Scenerio" /></td>
-			</tr>
-
-			<tr>
-			<td><label asp-for="Producer">Producer:</label></td>
-			<td><input type="text" asp-for="Producer" /></td>
-			</tr>
-
-			<tr>
-			<td><label asp-for="Story">Story:</label></td>
-				<td><textarea asp-for="Story" rows="6" cols="60"></textarea></td>
-
-			<tr>
-				<td><label asp-for="ReleaseYear">Release Year:</label></td>
-				<td><input type="text" asp-for="ReleaseYear" /></td>
-			</tr>
-
-			<tr>
-				<td><label asp-for="RunningTime">RunningTime:</label></td>
-				<td><input type="text" asp-for="RunningTime" /></td>
-			</tr>
-
-			<tr>
-				<td><label asp-for="Age">Age:</label></td>
-				<td><input type="text" asp-for="Age" /></td>
-			</tr>
-
-			<tr>
-				<td><label asp-for="İmageUrl">ImageURL:</label></td>
-				<td><input type="url" asp-for="İmageUrl" /></td>
-			</tr>
+	<form asp-controller="FilmAdmin" asp-action="UpdateMovie">
+		<table class="table">
 
 
-			<tr>
-				<td><label asp-for="Categories">Categories:</label></td>
-				<td>
-			     <input type="hidden" asp-for="@Model.Categories" />
-				@foreach(var item in Model.Categories)
-				{
-					@item.Category.CategoryName<br />
-					
-				}
-				</td>				
-				
-			</tr>
 
-			<tr>
-				<td><label asp-for="Artists">Cast:</label></td>
-				<td>
-						<input type="hidden" asp-for="@Model.Artists" />
-						@foreach (var item in Model.Artists)
-						{
-							@item.Artist.FullName
-							<br />
+			<thead>Movie Detail</thead>
+			<tbody>
+				<input type="hidden" asp-for="ID">
+				<tr>
+					<td><label asp-for="Name">Name:</label></td>
+					<td><input type="text" asp-for="Name" /></td>
+				</tr>
 
-						}
-				</td>
+				<tr>
+					<td><label asp-for="Director">Director:</label></td>
+					<td><input type="text" asp-for="Director" /></td>
+				</tr>
 
-			</tr>
+				<tr>
+					<td><label asp-for="Country">Country:</label></td>
+					<td><input type="text" asp-for="Country" /></td>
+				</tr>
 
-		</tbody>
+				<tr>
+					<td><label asp-for="Scenerio">Scenerio:</label></td>
+					<td><input type="text" asp-for="Scenerio" /></td>
+				</tr>
 
-	</table>
+				<tr>
+					<td><label asp-for="Producer">Producer:</label></td>
+					<td><input type="text" asp-for="Producer" /></td>
+				</tr>
 
-	<button class="btn btn-primary">Update</button>
+				<tr>
+					<td><label asp-for="Story">Story:</label></td>
+					<td><textarea asp-for="Story" rows="6" cols="60"></textarea></td>
 
-</form>
+				<tr>
+					<td><label asp-for="ReleaseYear">Release Year:</label></td>
+					<td><input type="text" asp-for="ReleaseYear" /></td>
+				</tr>
+
+				<tr>
+					<td><label asp-for="RunningTime">RunningTime:</label></td>
+					<td><input type="text" asp-for="RunningTime" /></td>
+				</tr>
+
+				<tr>
+					<td><label asp-for="Age">Age:</label></td>
+					<td><input type="text" asp-for="Age" /></td>
+				</tr>
+
+				<tr>
+					<td><label asp-for="İmageUrl">ImageURL:</label></td>
+					<td><input type="url" asp-for="İmageUrl" /></td>
+				</tr>
+
+
+				<tr>
+					<td><label asp-for="Categories">Categories:</label></td>
+					<td>
+						<input type="hidden" asp-for="Categories"/>
+						       @foreach (var item in Model.Categories)
+								{
+									@item.Category.CategoryName	
+									<br />
+
+							
+								}
+					</td>
+					<td>
+						<select name="GenreIDs[]" multiple id="GenreID">
+									@foreach (var item in ViewBag.Category as List<Category>)
+									{
+								<option value="@item.ID">@item.CategoryName</option>
+									}
+						</select>
+
+					</td>
+
+				</tr>
+
+				<tr>
+					<td><label asp-for="Artists">Cast:</label></td>
+					<td>
+						<input type="hidden" asp-for="Artists" />
+
+								@foreach (var item in Model.Artists)
+								{
+									@item.Artist.FullName
+									<br />
+							
+
+								}
+					</td>
+
+					<td>
+						<select name="ArtistIDs[]" multiple id="ArtistID">
+									@foreach (var item in ViewBag.Artists as List<Artist>)
+									{
+							   <option value=@item.ID>@item.FullName</option>
+									}
+
+						</select>
+
+
+					</td>
+
+				</tr>
+
+			</tbody>
+
+		</table>
+
+		<button class="btn btn-primary">Update</button>
+
+	</form>
 
 </div>

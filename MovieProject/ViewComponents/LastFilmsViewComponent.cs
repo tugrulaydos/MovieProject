@@ -24,7 +24,7 @@ namespace MovieProject.ViewComponents
 		{
 			var MovieList = _filmManager.GetFilmCategoryArtistTake6();
 
-			_memoryCache.Set("Movies6", MovieList, new MemoryCacheEntryOptions
+			_memoryCache.Set("Movies", MovieList, new MemoryCacheEntryOptions
 			{
 				AbsoluteExpiration = DateTime.Now.AddSeconds(20),
 

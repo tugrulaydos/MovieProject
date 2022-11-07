@@ -74,5 +74,10 @@ namespace BusinessLayer.Concrete
 		{
 			return _filmDal.GetFilmCategoryArtistTake6();
 		}
+
+		public Film FilmCategoryArtistByID(int id)
+		{
+			return _filmDal.GetFilmCategoryArtistByID(y => y.ID == id);
+		}
 	}
 }
