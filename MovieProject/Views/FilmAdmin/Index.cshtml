@@ -10,10 +10,9 @@
 
 <div class="container">
 <h1>MOVIES</h1>
-
 <br />
 
-<table class="table" id="myTable">
+    <table id="myTable" class="display" style="width:100%">
     <thead>
     <tr>
         <th>ID</th>
@@ -23,10 +22,10 @@
 
     </tr>
     </thead>
-
+    <tbody>
     @foreach (var item in Model)
     {
-        <tbody>
+        
         <tr>
             <td>@item.ID</td>
             <td>@item.Name</td>
@@ -34,17 +33,17 @@
                
                 @foreach(var x in item.Categories)
                 {
-                       @x.Category.CategoryName<br />
-                                        
+                      @x.Category.CategoryName<text>&nbsp;</text>
+                                         
                 }
               
                 
             </td>
             <td><a href="/FilmAdmin/MovieDetail/@item.ID" class="btn btn-danger">GO</a></td>
-        </tr>
-        </tbody>
+        </tr>        
 
     }
+    </tbody>
   
 </table>
     <br />

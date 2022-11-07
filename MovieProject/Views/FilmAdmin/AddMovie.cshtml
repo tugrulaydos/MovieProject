@@ -6,12 +6,13 @@
 	Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
 
+    <script src="~/movie/js/bootstrap.bundle.min.js"></script>
 
-<div class="row">
-
+    <h1>ADD Movie</h1>
 	<form asp-controller="FilmAdmin" asp-action="AddMovie">
+		<div class="row row-cols-sm-auto">
 
-		<div class="col-3 border>
+		<div class="col-3>
 
 			<label asp-for="Name">Name:</label>
 			<input type="text" class="form-control" asp-for="Name" placeholder="Enter Name" />
@@ -27,24 +28,27 @@
 
 			<label asp-for="IMDBRaiting">IMDB:</label>
 			<input type="text" contextmenu=" " class="form-control" asp-for="IMDBRaiting" placeholder="IMDB" />
-			<br />
-		</div>
-		<br />
 
-		<div class="col-6 border">
-			<label asp-for="Story">Story:</label>
-			<br />
-			<textarea asp-for="Story" rows="6" cols="45">Story</textarea>
-
-
-			<label asp-for="İmageUrl">ImageURL:</label>
-			<input type="url" class="form-control" asp-for="İmageUrl" placeholder="ImageURL" />
 
 			<label asp-for="Country">Country:</label>
 			<input type="text" class="form-control" asp-for="Country" placeholder="Country" />
 
 			<label asp-for="ReleaseYear">ReleaseYear:</label>
 			<input type="text" class="form-control" asp-for="ReleaseYear" placeholder="ReleaseYear" />
+			
+		</div>
+		
+
+		<div class="col-6">
+			<label asp-for="Story">Story:</label>
+			<br />
+			<textarea asp-for="Story" rows="9" cols="65">Story</textarea>
+
+			<br />
+
+			<label asp-for="İmageUrl">ImageURL:</label>
+			<input type="url" class="form-control" asp-for="İmageUrl" placeholder="ImageURL" />
+
 
 			<label asp-for="RunningTime">RunningTime:</label>
 			<input type="text" class="form-control" asp-for="RunningTime" placeholder="RunningTime" />
@@ -52,9 +56,9 @@
 			<label asp-for="Age">Age:</label>
 			<input type="text" class="form-control" asp-for="Age" placeholder="Age" />
 		</div>
-		<br />
 
-		<div class="col-3 border">
+
+		<div class="col-3">
 			<legend>Choose Movie's Genre:</legend>
 
 			<select name="GenreID[]" multiple id="GenreID">
@@ -79,13 +83,15 @@
 
 		</div>
 
-
-		<input type="submit" value="Submit">
+		</div>
+		<div class="container my-3 mt-3">
+		<input type="submit" value="ADD Movie">
+	    </div>
 
 
 	</form>
 
-</div>
+
 
 
 

@@ -113,7 +113,6 @@ namespace MovieProject.Controllers
         {
 
             //var ValueCategories = _categoryManager.GetCategoriesByCategoryID(GenreID);
-
             //var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistID);
 
 
