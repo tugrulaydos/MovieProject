@@ -22,7 +22,10 @@ namespace BusinessLayer.Abstract
 		public void ADDFilm(Film _film, int[] _CatogoryIDs, int[] _ArtistIDs);
 
 		public List<Film> GetFilmCategoryArtistTake6();
-				
 
-	}
+		public void UpdateCategoryArtist(int FilmID, int[] GenreIDs, int[] ArtistIDs);
+
+
+
+    }
 }

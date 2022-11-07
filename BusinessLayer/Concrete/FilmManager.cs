@@ -79,5 +79,10 @@ namespace BusinessLayer.Concrete
 		{
 			return _filmDal.GetFilmCategoryArtistByID(y => y.ID == id);
 		}
+
+		public void UpdateCategoryArtist(int FilmID, int[] GenreIDs, int[] ArtistIDs)
+		{
+			_filmDal.UpdateCategoryArtist(FilmID, GenreIDs,ArtistIDs);
+		}
 	}
 }
