@@ -7,6 +7,9 @@ using MovieProject.Models;
 using System;
 using FluentValidation.AspNetCore;
 using System.Configuration;
+using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFrameWork;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +27,20 @@ builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterVa
 builder.Services.AddDbContext<ContextMovieDB>();
 
 builder.Services.AddMemoryCache();
+
+builder.Services.AddScoped<IAjaxService, AjaxManager>(p => new AjaxManager(new EFAjaxDal()));
+
+builder.Services.AddScoped<IArtistService, ArtistManager>(p => new ArtistManager(new EFArtistDal()));
+
+builder.Services.AddScoped<ICategoryService, CategoryManager>(y => new CategoryManager(new EFCategoryDal()));
+
+builder.Services.AddScoped<ICommentService, CommentManager>(y =>new CommentManager(new EFCommentDal()));
+
+builder.Services.AddScoped<IUserService, UserManager>(y => new UserManager(new EFUserDal()));
+
+
+
+builder.Services.AddScoped<IFilmService, FilmManager>(x => new FilmManager(new EFFilmDal()));
 
 builder.Services.AddIdentity<User, UserRole>(x =>
 {

@@ -14,9 +14,9 @@ namespace DataAccessLayer.Repository
     {
         //MovieDBContext C = new MovieDBContext();
 
-        private ContextMovieDB _context = null;
+        private readonly ContextMovieDB _context;
 
-        private DbSet<T> table = null;
+        private readonly DbSet<T> table;
 
         public GenericRepository()
         {

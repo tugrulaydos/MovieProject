@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
@@ -13,16 +14,31 @@ namespace MovieProject.Controllers
 {
     public class CatalogController : Controller
     {
-        CategoryManager _categoryManager = new CategoryManager(new EFCategoryDal());
+       
+        
+        private readonly ICategoryService _categoryManager;
 
-        FilmManager _FilmManager = new FilmManager(new EFFilmDal());
+        private readonly IFilmService _FilmManager;        
 
-        AjaxManager _ajaxManager = new AjaxManager(new EFAjaxDal());
+        private readonly IAjaxService _ajaxManager;       
+               
+
+
+        public CatalogController(IAjaxService ajaxManager,ICategoryService categoryManager, IFilmService FilmManager)
+        {
+            this._ajaxManager = ajaxManager;
+            this._categoryManager = categoryManager;
+            this._FilmManager = FilmManager;
+        }
+
         public IActionResult Index()
         {
             CatalogModel CM = new CatalogModel();
-            CM.CategoriesForFilter = _categoryManager.TGetList();
-            CM.Films = _FilmManager.FilmCategoryArtist();
+            CM.CategoriesForFilter = _categoryManager.TGetList();          
+            CM.Films = _FilmManager.FilmCategoryArtist();            
+
+            
+
             return View(CM);
         }
 
@@ -30,7 +46,8 @@ namespace MovieProject.Controllers
         [HttpPost]
         public  IActionResult Genre(int GenreID)  //Film Türü
         {
-                    
+
+            //List<Film> Movies = _ajaxManager.GetFilmByGenreID(GenreID);
 
             List<Film> Movies = _ajaxManager.GetFilmByGenreID(GenreID);
 
