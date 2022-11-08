@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,14 @@ namespace MovieProject.Controllers
 {
 	public class ArtistAdminController : Controller
 	{
-		ArtistManager _artistManager = new ArtistManager(new EFArtistDal());
+		//ArtistManager _artistManager = new ArtistManager(new EFArtistDal());
+
+		IArtistService _artistManager;
+
+		public ArtistAdminController(IArtistService artistService)
+		{
+			this._artistManager = artistService;
+		}
 
 		
 		public IActionResult Index()

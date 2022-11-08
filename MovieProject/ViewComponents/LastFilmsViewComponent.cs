@@ -1,4 +1,5 @@
 ﻿
+using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
@@ -9,13 +10,17 @@ namespace MovieProject.ViewComponents
 {
 	public class LastFilmsViewComponent:ViewComponent
 	{
-        FilmManager _filmManager = new FilmManager(new EFFilmDal());
+		//FilmManager _filmManager = new FilmManager(new EFFilmDal());
+
+		IFilmService _filmManager;
 
         IMemoryCache _memoryCache;
 
-        public LastFilmsViewComponent(IMemoryCache memoryCache)
+        public LastFilmsViewComponent(IMemoryCache memoryCache,IFilmService filmManager)
 		{
 			_memoryCache = memoryCache;
+
+			this._filmManager = filmManager;
 
 			Set();
 		}

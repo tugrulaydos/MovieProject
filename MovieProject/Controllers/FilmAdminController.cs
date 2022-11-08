@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
@@ -15,11 +16,24 @@ namespace MovieProject.Controllers
 {
     public class FilmAdminController : Controller
     {
-        FilmManager _filmManager = new FilmManager(new EFFilmDal());
+        //FilmManager _filmManager = new FilmManager(new EFFilmDal());
 
-        CategoryManager _categoryManager = new CategoryManager(new EFCategoryDal());
+        //CategoryManager _categoryManager = new CategoryManager(new EFCategoryDal());
 
-        ArtistManager _artistManager = new ArtistManager(new EFArtistDal());
+        //ArtistManager _artistManager = new ArtistManager(new EFArtistDal());
+
+        IFilmService _filmManager;
+
+        ICategoryService _categoryManager;
+
+        IArtistService _artistManager;
+
+        public FilmAdminController(IFilmService filManager, ICategoryService categoryManager, IArtistService artistManager)
+        {
+            _filmManager = filManager;
+            _categoryManager = categoryManager;
+            _artistManager = artistManager;
+        }
 
       
         public IActionResult Index()
@@ -51,49 +65,6 @@ namespace MovieProject.Controllers
             _filmManager.TUpdate(f1);
 
 
-
-            //Film? movie = await context.Films.Include(x => x.Categories).ThenInclude(y => y.Category).Include(a => a.Artists).ThenInclude(b => b.Artist).FirstOrDefaultAsync(x => x.ID == f1.ID); 
-            
-
-            //foreach (var category in movie.Categories)
-            //{
-            //    movie.Categories.Remove(category);
-
-            //}
-
-            //foreach (var artist in movie.Artists)
-            //{
-            //    movie.Artists.Remove(artist);
-
-            //}         
-
-
-            //foreach (var item in GenreIDs)
-            //{
-            //    CategoryFilm CF = new CategoryFilm
-            //    {
-            //        CategoryID = item,
-            //        Film = movie
-
-            //    };
-
-            //    movie.Categories.Add(CF);
-
-            //}
-
-            //foreach (var item in ArtistIDs)
-            //{
-            //    ArtistFilm AF = new ArtistFilm
-            //    {
-            //        ArtistID = item,
-            //        Film = movie
-            //    };
-            //    movie.Artists.Add(AF);
-            //}
-
-
-            //await context.SaveChangesAsync();
-
             _filmManager.UpdateCategoryArtist(f1.ID, GenreIDs, ArtistIDs);
 
             return RedirectToAction("Index");
@@ -110,14 +81,9 @@ namespace MovieProject.Controllers
 
         [HttpPost]
         public  IActionResult AddMovie(Film f,int[] GenreID, int[] ArtistID)
-        {
+        {          
 
-            //var ValueCategories = _categoryManager.GetCategoriesByCategoryID(GenreID);
-            //var ValueArtist = _artistManager.GetArtistsByArtistID(ArtistID);
-
-
-            _filmManager.ADDFilm(f,GenreID,ArtistID);
-           
+            _filmManager.ADDFilm(f,GenreID,ArtistID);           
 
             return RedirectToAction("Index", "FilmAdmin");
         }

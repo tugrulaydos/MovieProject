@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
@@ -13,11 +14,22 @@ namespace MovieProject.Controllers
 {
 	public class MovieDetailController : Controller
 	{
-		FilmManager _FilmManager = new FilmManager(new EFFilmDal());
+		//FilmManager _FilmManager = new FilmManager(new EFFilmDal());
 
-        CommentManager _commentManager = new CommentManager(new EFCommentDal());
+        //CommentManager _commentManager = new CommentManager(new EFCommentDal());
 
-		public IActionResult Index(int id)
+        ICommentService _commentManager;
+
+        IFilmService _FilmManager;
+
+        public MovieDetailController(IFilmService filmManger, ICommentService commentManager)
+        {
+            _FilmManager = filmManger;
+
+            _commentManager = commentManager;
+        }
+
+        public IActionResult Index(int id)
 		{
             var c = new ContextMovieDB();
 

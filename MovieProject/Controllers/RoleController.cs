@@ -1,4 +1,5 @@
-﻿using BusinessLayer.Concrete;
+﻿using BusinessLayer.Abstract;
+using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFrameWork;
 using EntityLayer.Concrete;
 using EntityLayer.ViewModels;
@@ -12,17 +13,24 @@ namespace MovieProject.Controllers
         readonly RoleManager<UserRole> _roleManager;
 
         readonly UserManager<User> _userManager;
-        public RoleController(RoleManager<UserRole> roleManager, UserManager<User> userManager)
+
+        readonly IUserService _userManagerService;
+        public RoleController(RoleManager<UserRole> roleManager, UserManager<User> UserManagerIdentity, IUserService userManagerService)
         {
             _roleManager = roleManager;
-            _userManager = userManager;
+
+            _userManager = UserManagerIdentity;
+
+            _userManagerService = userManagerService;
+
+
         }
 
-        UserManager userManager = new UserManager(new EFUserDal()); //Business Layer Katmanı.
+        //UserManager userManager = new UserManager(new EFUserDal()); //Business Layer Katmanı.
 
         public IActionResult UserList()
         {
-            return View(userManager.TGetList());
+            return View(_userManagerService.TGetList());
         }
 
         public IActionResult Index()
