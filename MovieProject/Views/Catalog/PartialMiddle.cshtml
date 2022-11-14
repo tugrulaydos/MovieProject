@@ -17,26 +17,35 @@
 			a = $(this).attr("data-id");
 
 		});
-
+		
 		$("#categorylist").click(function () {
-			debugger;
-			var b = new Object();		
+			alert("Merhaba");
+			var b = new Object();
 			b.GenreID = a;
 			debugger;
 			$.ajax({
-				type: "post",
-				url: "@Url.Action("Genre")",
-				data: b,
+			
+				url: "Genre",
+				type: "POST",	
 				datatype: "json",
-				success: function (msg) {				
-					console.log(msg);
+				data:b,	
+				
+				success: function () {
+					debugger;
 					
+					location.reload();
 				},
-				error: function (req, status, error) {
-					console.log(req);
-				}
+				
+				error: function (hata, ajaxOptions, thrownError) {
+                    alert(hata.status);
+                    alert(thrownError);
+                    alert(hata.responseText);
+                }
 
 			});
+			
+			
+
 		});
 	});
 
@@ -93,6 +102,9 @@
 				datatype: "json",
 				success: function (msg) {
 					console.log(msg);
+
+
+					debugger;
 				},
 				error: function (req, status, error) {
 					console.log(req);
@@ -214,7 +226,8 @@
 		<div class="row">
 
 			<!-- card -->
-			@foreach (var item in Model.Films)
+			@foreach (
+					var item in Model.Films)
 			{
 				<div class="col-sm-6 col-md-4 col-lg-3">
 					<div class="card card--list">

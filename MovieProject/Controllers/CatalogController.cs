@@ -9,11 +9,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.View;
 using MovieProject.Models;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 
 namespace MovieProject.Controllers
 {
     public class CatalogController : Controller
     {
+        private static int _GenreID;
        
         
         private readonly ICategoryService _categoryManager;
@@ -26,16 +28,43 @@ namespace MovieProject.Controllers
 
         public CatalogController(IAjaxService ajaxManager,ICategoryService categoryManager, IFilmService FilmManager)
         {
+           
             this._ajaxManager = ajaxManager;
             this._categoryManager = categoryManager;
             this._FilmManager = FilmManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Temp()
         {
+
+            return RedirectToAction("Index","Catalog");
+
+        }
+
+        
+        public IActionResult Index()
+        {                                      
+           
+            
+
             CatalogModel CM = new CatalogModel();
-            CM.CategoriesForFilter = _categoryManager.TGetList();          
-            CM.Films = _FilmManager.FilmCategoryArtist();            
+            
+            if (_GenreID!=0)
+            {
+                List<Film> Movies = _ajaxManager.GetFilmByGenreID(_GenreID);
+                //CatalogModel CM = new CatalogModel();
+                CM.Films = Movies;
+                CM.CategoriesForFilter = _categoryManager.TGetList();
+
+            }
+            else
+            {
+                //CatalogModel CM = new CatalogModel();
+                CM.CategoriesForFilter = _categoryManager.TGetList();
+                CM.Films = _FilmManager.FilmCategoryArtist();
+
+            }
+                  
 
             
 
@@ -45,17 +74,22 @@ namespace MovieProject.Controllers
 
         [HttpPost]
         public  IActionResult Genre(int GenreID)  //Film Türü
-        {
+        {                        
 
             //List<Film> Movies = _ajaxManager.GetFilmByGenreID(GenreID);
 
-            List<Film> Movies = _ajaxManager.GetFilmByGenreID(GenreID);
+            //CatalogModel CM = new CatalogModel();
 
-            CatalogModel CM = new CatalogModel();
-            CM.Films = Movies;
-            CM.CategoriesForFilter = _categoryManager.TGetList();
+            //CM.Films = Movies;
 
-            return View(CM);            
+            //CM.CategoriesForFilter = _categoryManager.TGetList();
+
+
+            _GenreID = GenreID;
+
+            return RedirectToAction("Temp", "Catalog");
+
+
 
         }
 

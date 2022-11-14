@@ -106,4 +106,9 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=FilmAdmin}/{action=Index}/{id?}");
 
+app.MapControllerRoute(
+    name: "CustomRoute",
+    pattern:"{controller=Home}/{action=Index}/{a}");
+
+
 app.Run();
