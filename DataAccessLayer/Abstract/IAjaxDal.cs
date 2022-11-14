@@ -10,11 +10,9 @@ namespace DataAccessLayer.Abstract
 {
     public interface IAjaxDal
     {
-        public List<Film> GetFilmByGenreID(int ID);
+        public List<Film> GetFilmByGenreID(int ID, double ImdbMax, double ImdbMin);
 
-        public List<Film> GetFilmByImdb(ImdbFilter filter);
-
-        public List<Film> GetFilmByYear(YearFilter filter);
+       
 
     }
 }

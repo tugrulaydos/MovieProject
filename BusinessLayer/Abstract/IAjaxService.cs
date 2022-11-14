@@ -10,9 +10,8 @@ namespace BusinessLayer.Abstract
 {
     public interface IAjaxService
     {
-        public List<Film> GetFilmByGenreID(int ID);
-        public List<Film> GetFilmByImdb(ImdbFilter filter);
-        public List<Film> GetFilmByYear(YearFilter filter);     
+        public List<Film> GetFilmByGenreID(int ID,double ImdbMax,double ImdbMin);
+        
 
     }
 }

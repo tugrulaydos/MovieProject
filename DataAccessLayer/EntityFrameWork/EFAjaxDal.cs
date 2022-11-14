@@ -13,42 +13,18 @@ namespace DataAccessLayer.EntityFrameWork
 {
     public class EFAjaxDal : IAjaxDal
     {
-        //ContextMovieDB c;
-
-        //public EFAjaxDal(ContextMovieDB _c)
-        //{
-        //    this.c = _c;
-
-        //}
         
-        public List<Film> GetFilmByGenreID(int ID)
+        
+        public List<Film> GetFilmByGenreID(int ID,double ImdbMax,double ImdbMin)
         {
             var c = new ContextMovieDB();
 
             var movies = c.Films.Include(x => x.Categories).ThenInclude(y => y.Category)
-                .Where(a => a.Categories.Any(b => b.Category.ID == ID)).ToList();            
+                .Where(a => a.Categories.Any(b => b.Category.ID == ID) && a.IMDBRaiting >= ImdbMin && a.IMDBRaiting <= ImdbMax).ToList();            
 
             return movies;
         }
 
-        public List<Film> GetFilmByImdb(ImdbFilter filter)
-        {
-            var c = new ContextMovieDB();
-
-            var movies = c.Films.Include(x => x.Categories).ThenInclude(y => y.Category).
-                Where(a => a.IMDBRaiting >= filter.ImdbMinValue && a.IMDBRaiting <= filter.ImdbMaxValue).ToList();
-
-            return movies;
-        }
-
-        public List<Film> GetFilmByYear(YearFilter filter)
-        {
-            var c = new ContextMovieDB();
-
-            var movies = c.Films.Include(x=>x.Categories).ThenInclude(y=>y.Category).
-                Where(a => a.ReleaseYear >= filter.MinYear && a.ReleaseYear <= filter.MaxYear).ToList();
-
-            return movies;            
-        }
+        
     }
 }
