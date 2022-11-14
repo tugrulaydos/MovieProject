@@ -13,6 +13,13 @@ namespace DataAccessLayer.EntityFrameWork
 {
     public class EFAjaxDal : IAjaxDal
     {
+        //ContextMovieDB c;
+
+        //public EFAjaxDal(ContextMovieDB _c)
+        //{
+        //    this.c = _c;
+
+        //}
         
         public List<Film> GetFilmByGenreID(int ID)
         {
