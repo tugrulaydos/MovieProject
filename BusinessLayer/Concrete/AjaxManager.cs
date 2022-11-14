@@ -16,22 +16,14 @@ namespace BusinessLayer.Concrete
         public AjaxManager(IAjaxDal ajaxDal)
         {
             _ajaxDal = ajaxDal;
-        }
+        }       
+             
 
-        public List<Film> GetFilmByGenreID(int ID)
+        public List<Film> GetFilmByGenreID(int ID, double ImdbMax, double ImdbMin)
         {
-
-            return _ajaxDal.GetFilmByGenreID(ID);
+            return _ajaxDal.GetFilmByGenreID(ID,ImdbMax,ImdbMin);
         }
 
-        public List<Film> GetFilmByImdb(ImdbFilter filter)
-        {
-            return _ajaxDal.GetFilmByImdb(filter);
-        }
-
-        public List<Film> GetFilmByYear(YearFilter filter)
-        {
-            return _ajaxDal.GetFilmByYear(filter);
-        }
+      
     }
 }

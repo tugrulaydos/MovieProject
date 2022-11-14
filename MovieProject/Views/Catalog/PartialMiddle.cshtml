@@ -18,11 +18,14 @@
 
 		});
 		
-		$("#categorylist").click(function () {
-			alert("Merhaba");
+		$("#buttonjson").click(function () {
+			
+		
 			var b = new Object();
+			b.ImdbMinValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");
+			b.ImdbMaxValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");
 			b.GenreID = a;
-			debugger;
+	
 			$.ajax({
 			
 				url: "Genre",
@@ -30,8 +33,7 @@
 				datatype: "json",
 				data:b,	
 				
-				success: function () {
-					debugger;
+				success: function () {			
 					
 					location.reload();
 				},
@@ -52,68 +54,7 @@
 </script>
 
 
-<script type="text/javascript">
 
-
-	$(document).ready(function () {
-
-		$("#buttonjson").click(function () {
-			debugger;
-
-			var a = new Object();
-
-			a.ImdbMinValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");
-			a.ImdbMaxValue = $('#filter__imbd').find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");
-			debugger;
-			$.ajax({
-				type: "post",
-				url: "@Url.Action("Imdb")",
-				data: a,
-				datatype: "json",
-				success: function (msg) {
-					console.log(msg);
-				},
-				error: function (req, status, error) {
-					console.log(req);
-				}
-			});
-		});
-	});
-
-</script>
-
-<script type="text/javascript">
-
-
-	$(document).ready(function () {
-
-		$("#buttonjson2").click(function () {
-			debugger;
-
-			var a = new Object();
-
-			a.MinYear = $("#filter__years").find("div.noUi-handle.noUi-handle-lower").attr("aria-valuetext");
-			a.MaxYear = $("#filter__years").find("div.noUi-handle.noUi-handle-upper").attr("aria-valuetext");
-			debugger;
-			$.ajax({
-				type: "post",
-				url: "@Url.Action("ReleaseYear")",
-				data: a,
-				datatype: "json",
-				success: function (msg) {
-					console.log(msg);
-
-
-					debugger;
-				},
-				error: function (req, status, error) {
-					console.log(req);
-				}
-			});
-		});
-	});
-
-</script>
 
 
 
@@ -131,7 +72,7 @@
 							<span class="filter__item-label">GENRE:</span>
 
 							<div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<input type="button" id="GenreName" value="Drama">
+								<input type="button" id="GenreName" value="Choose">
 
 								<span></span>
 							</div>
@@ -186,7 +127,7 @@
 						</div>
 						<!-- end filter item -->
 						<!-- filter item -->
-						<div class="filter__item" id="filter__year">
+						@*<div class="filter__item" id="filter__year">
 							<span class="filter__item-label">RELEASE YEAR:</span>
 
 							<div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -200,7 +141,7 @@
 							<div class="filter__item-menu filter__item-menu--range dropdown-menu" aria-labelledby="filter-year">
 								<div id="filter__years"></div>
 							</div>
-						</div>
+						</div>*@
 						<!-- end filter item -->
 					</div>
 
@@ -209,7 +150,7 @@
 					<!-- filter btn -->
 					<button class="filter__btn" type="button" id="buttonjson">apply filter Imdb</button>
 
-					<button class="filter__btn" type="button" id="buttonjson2">apply filter Years</button>
+				
 
 
 					<!-- end filter btn -->

@@ -14,8 +14,6 @@ namespace EntityLayer.ViewModels
 
 		public double ImdbMaxValue { get; set; }
 
-		public short MinYear { get; set; }
-
-		public short MaxYear { get; set; }
+	
 	}
 }
