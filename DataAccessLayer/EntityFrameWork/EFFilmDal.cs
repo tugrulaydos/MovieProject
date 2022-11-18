@@ -46,13 +46,20 @@ namespace DataAccessLayer.EntityFrameWork
 
             }
 
-			var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.Category.ID))).ToList();
-
-			values2 = values2.Where(a => a.Categories.Count > 0).ToList(); 
+            //var values2 = c.Films.Include(x => x.Categories.Where(y => IDCategories.Contains(y.Category.ID))).ToList();
 
 
 
-			return values2;			
+            //values2 = values2.Where(a => a.Categories.Count > 0).ToList(); 
+
+
+            var values2 = c.Films.Include(x => x.Categories).ThenInclude(y => y.Category).Where(z => z.Categories.Any(a => IDCategories.Contains(a.CategoryID))).ToList();
+
+
+            values2.Remove(values1);
+
+
+            return values2;			
 		}
 
 		public List<Film> GetFilmCategoryArtist()  
