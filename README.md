@@ -7,6 +7,8 @@ In this Project You can watch many movies.
 - N Tier Architecture
 - Code First
 - Sql Server
+- Auto Mapper
+- Fluent Validation
 - Jquery
 - Ajax
 - EntityFramework Core
