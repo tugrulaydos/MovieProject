@@ -16,9 +16,9 @@ In this Project You can watch many movies.
 - Html
 - Css
 - JavaScript
-- c#
-- .Net Core
-
+- C#
+- .Net Core 6.0
+- Visual Studio
 
 ![image](https://github.com/tugrulaydos/MovieProject/assets/62428662/4a915ce9-12f1-476d-8a54-8519e7a1e0da)
 ![image](https://github.com/tugrulaydos/MovieProject/assets/62428662/06d7e948-06e2-4a19-8005-813a0094e9a8)
